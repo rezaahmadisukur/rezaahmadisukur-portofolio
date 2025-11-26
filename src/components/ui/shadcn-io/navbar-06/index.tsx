@@ -44,6 +44,7 @@ import { cn } from "../../../../lib/utils";
 // import type { ComponentProps } from "react";
 import { Button } from "../../button";
 import { useTheme } from "@/components/theme-provider";
+import { AnimatedThemeToggler } from "../../animated-theme-toggler";
 
 // Simple logo component for the navbar
 const Logo = (props: React.SVGAttributes<SVGElement>) => {
@@ -262,7 +263,7 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
       defaultLanguage = "en",
       onNavItemClick,
       onLanguageChange,
-      onThemeChange,
+      // onThemeChange,
       ...props
     },
     ref
@@ -420,7 +421,8 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
           {/* Right side */}
           <div className="flex items-center gap-2">
             {/* Theme toggle */}
-            <ThemeToggle onThemeChange={onThemeChange} />
+            {/* <ThemeToggle onThemeChange={onThemeChange} /> */}
+            <AnimatedThemeToggler />
             {/* Language selector */}
             <Select
               defaultValue={defaultLanguage}
