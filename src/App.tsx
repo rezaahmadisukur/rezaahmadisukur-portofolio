@@ -1,3 +1,4 @@
+import About from "./components/about";
 import { Hero1 } from "./components/hero1";
 import { BackgroundBeams } from "./components/ui/background-beams";
 import { Navbar06 } from "./components/ui/shadcn-io/navbar-06";
@@ -9,6 +10,13 @@ const App = () => {
       <header className="w-10/12 mx-auto">
         <Hero1 />
       </header>
+
+      <main className="w-10/12 mx-auto">
+        <section>
+          <About />
+        </section>
+      </main>
+
       <BackgroundBeams />
     </div>
   );
