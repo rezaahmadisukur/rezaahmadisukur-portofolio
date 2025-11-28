@@ -2,8 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { Badge } from "./ui/badge";
 import { PixelImage } from "./ui/pixel-image";
+import { useRef } from "react";
+import { useInView } from "motion/react";
+// import { useInView } from "motion/react";
 
 const About = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
     <section className="py-15">
       <div className="container">
@@ -16,13 +22,15 @@ const About = () => {
                   <ArrowUpRight className="ml-2 size-4 text-accent-foreground" />
                 </AnimatedGradientText>
               </Badge>
-              <div className="mt-10">
-                <PixelImage
-                  src="/public/assets/images/profile.jpg"
-                  customGrid={{ rows: 10, cols: 10 }}
-                  grayscaleAnimation
-                  maxAnimationDelay={3000}
-                />
+              <div ref={ref} className="mt-10">
+                {isInView && (
+                  <PixelImage
+                    src="/public/assets/images/profile.jpg"
+                    customGrid={{ rows: 10, cols: 10 }}
+                    grayscaleAnimation
+                    maxAnimationDelay={3000}
+                  />
+                )}
               </div>
             </div>
           </div>

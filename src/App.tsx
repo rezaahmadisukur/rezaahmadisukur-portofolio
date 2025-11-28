@@ -16,7 +16,6 @@ const App = () => {
           <About />
         </section>
       </main>
-
       <BackgroundBeams />
     </div>
   );

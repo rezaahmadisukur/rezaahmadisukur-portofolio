@@ -29,7 +29,7 @@ interface Hero1Props {
 
 const Hero1 = ({
   badge = "✨ My Portofolio",
-  heading = "Reza Ahmadi Sukur",
+  heading = "Portofolio",
   description = "Finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.",
   buttons = {
     primary: {
@@ -61,7 +61,7 @@ const Hero1 = ({
                 </Badge>
               )}
               <h1 className="my-6 text-pretty text-4xl font-bold lg:text-6xl">
-                <span className="flex gap-3">
+                <span className="flex gap-3 uppercase">
                   {heading}
                   <img
                     src="/public/assets/gifs/wave.gif"
@@ -108,8 +108,8 @@ const Hero1 = ({
             </div>
           </div>
           <div className="flex justify-center items-center">
-            <div className="flex justify-center items-center border rounded-full overflow-hidden relative w-1/2 lg:w-full bg-accent shadow">
-              <div className="w-full flex justify-center backdrop-blur-2xl">
+            <div className="flex justify-center items-center border rounded-full overflow-hidden relative w-1/2 lg:w-full bg-accent shadow sm:w-2/3 xs:w-full">
+              <div className="w-full flex justify-center backdrop-blur-md">
                 <img
                   src={image.src}
                   alt={image.alt}
