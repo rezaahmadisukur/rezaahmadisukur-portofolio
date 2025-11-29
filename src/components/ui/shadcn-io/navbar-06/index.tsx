@@ -41,7 +41,6 @@ import {
 } from "../../dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar";
 import { cn } from "../../../../lib/utils";
-// import type { ComponentProps } from "react";
 import { Button } from "../../button";
 import { useTheme } from "@/components/theme-provider";
 import { AnimatedThemeToggler } from "../../animated-theme-toggler";
@@ -422,7 +421,7 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
           <div className="flex items-center gap-2">
             {/* Theme toggle */}
             {/* <ThemeToggle onThemeChange={onThemeChange} /> */}
-            <AnimatedThemeToggler />
+            <AnimatedThemeToggler className="text-popover-foreground/50 cursor-pointer w-7  flex justify-center items-center p-1 rounded" />
             {/* Language selector */}
             <Select
               defaultValue={defaultLanguage}

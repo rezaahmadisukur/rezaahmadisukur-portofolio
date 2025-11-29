@@ -30,7 +30,7 @@ interface Hero1Props {
 const Hero1 = ({
   badge = "✨ My Portofolio",
   heading = "Portofolio",
-  description = "Finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.",
+  description = "A passionate developer with expertise in React, Tailwind CSS, and Javascript technologies . Currently pursuing a Master's in Information System at Bina Sarana Informatika University.",
   buttons = {
     primary: {
       text: "Download CV",
@@ -38,7 +38,7 @@ const Hero1 = ({
     },
     secondary: {
       text: "Hire Me",
-      url: "https://www.shadcnblocks.com"
+      url: ""
     }
   },
   image = {
@@ -47,7 +47,7 @@ const Hero1 = ({
   }
 }: Hero1Props) => {
   return (
-    <section className="py-15">
+    <section className="py-20">
       <div className="container">
         <div className="grid items-center gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
@@ -60,18 +60,13 @@ const Hero1 = ({
                   </AnimatedGradientText>
                 </Badge>
               )}
-              <h1 className="my-6 text-pretty text-4xl font-bold lg:text-6xl">
-                <span className="flex gap-3 uppercase">
-                  {heading}
-                  <img
-                    src="/public/assets/gifs/wave.gif"
-                    alt="..."
-                    width={50}
-                  />
-                </span>
+              <div className="my-6 text-4xl font-bold lg:text-6xl text-center lg:text-start">
+                <h1 className="">
+                  <span className="uppercase">{heading}</span>
+                </h1>
                 <p>
                   <TypingAnimation
-                    words={["Junior Programmer", "Web Developer"]}
+                    words={["Junior Programmer", "Junior Web Developer"]}
                     typeSpeed={100}
                     deleteSpeed={150}
                     pauseDelay={2000}
@@ -79,7 +74,7 @@ const Hero1 = ({
                     className="text-primary lg:text-4xl"
                   />
                 </p>
-              </h1>
+              </div>
               <p className="text-muted-foreground mb-8 max-w-xl lg:text-xl">
                 {description}
               </p>
@@ -107,9 +102,9 @@ const Hero1 = ({
               </div>
             </div>
           </div>
-          <div className="flex justify-center items-center">
-            <div className="flex justify-center items-center border rounded-full overflow-hidden relative w-1/2 lg:w-full bg-accent shadow sm:w-2/3 xs:w-full">
-              <div className="w-full flex justify-center backdrop-blur-md">
+          <div className="flex justify-center items-center lg:col-span-1">
+            <div className="flex justify-center items-center border rounded-full overflow-hidden relative w-1/2 lg:w-full bg-accent shadow-xl sm:w-2/3 xs:w-full">
+              <div className="w-full flex justify-center backdrop-blur-xl">
                 <img
                   src={image.src}
                   alt={image.alt}
