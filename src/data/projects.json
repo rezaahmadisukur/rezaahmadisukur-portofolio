@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Nimbly",
+      "image": "",
+      "desc": {
+        "en": "Nimbly is a mini e-commerce website that i built using React and TypeScript with a filtering system",
+        "id": "Nimbly adalah situs web mini e-commerce yang saya bangun menggunakan React dan TypeScript dengan sistem penyaringan."
+      },
+      "category": ["React", "Typescript", "Redux", "Localstorage"]
+    },
+    {
+      "id": 2,
+      "title": "Nimbly 2",
+      "image": "",
+      "desc": {
+        "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+        "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+      },
+      "category": ["React", "Typescript", "Redux", "Localstorage"]
+    },
+    {
+      "id": 3,
+      "title": "Nimbly 3",
+      "image": "",
+      "desc": {
+        "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+        "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+      },
+      "category": ["React", "Typescript", "Redux", "Localstorage"]
+    },
+    {
+      "id": 4,
+      "title": "Nimbly 4",
+      "image": "",
+      "desc": {
+        "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+        "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+      },
+      "category": ["React", "Typescript", "Redux", "Localstorage"]
+    },
+    {
+      "id": 5,
+      "title": "Nimbly 5",
+      "image": "",
+      "desc": {
+        "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+        "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+      },
+      "category": ["React", "Typescript", "Redux", "Localstorage"]
+    },
+    {
+      "id": 6,
+      "title": "Nimbly 6",
+      "image": "",
+      "desc": {
+        "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+        "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+      },
+      "category": ["React", "Typescript", "Redux", "Localstorage"]
+    }
+  ]
+}

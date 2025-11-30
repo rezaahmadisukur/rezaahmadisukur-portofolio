@@ -1,5 +1,6 @@
 import About from "./components/about";
 import { Hero1 } from "./components/hero1";
+import PersonalProject from "./components/personal-project";
 import TechStack from "./components/tech-stack";
 import { BackgroundBeams } from "./components/ui/background-beams";
 import { Navbar06 } from "./components/ui/shadcn-io/navbar-06";
@@ -18,6 +19,9 @@ const App = () => {
         </section>
         <section>
           <TechStack />
+        </section>
+        <section>
+          <PersonalProject />
         </section>
       </main>
       <BackgroundBeams />

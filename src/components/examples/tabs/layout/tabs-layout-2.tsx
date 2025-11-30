@@ -6,7 +6,7 @@ export const title = "Full Width Tabs";
 const TabsLayout = () => {
   return (
     <Tabs className="w-full max-w-full mx-auto mt-10" defaultValue="language">
-      <TabsList className="grid w-full grid-cols-4 max-w-2xl mx-auto bg-secondary">
+      <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 max-w-2xl mx-auto bg-secondary">
         <TabsTrigger value="language">Languages & Tools</TabsTrigger>
         <TabsTrigger value="backend">Backend & APIs</TabsTrigger>
         <TabsTrigger value="library">Frameworks & Libraries</TabsTrigger>
