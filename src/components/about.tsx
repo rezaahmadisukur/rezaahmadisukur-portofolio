@@ -110,10 +110,10 @@ const About = () => {
                     {sosmeds.map((sosmed, index) => (
                       <Tooltip key={index}>
                         <TooltipTrigger
-                          className="w-10 p-1 rounded-lg hover:-translate-y-1 cursor-pointer bg-accent transition-all duration-300"
+                          className="w-10 p-1 rounded-md hover:-translate-y-1 cursor-pointer border border-foreground dark:bg-accent transition-all duration-300"
                           asChild
                         >
-                          <a href="#">
+                          <a href="#" target="_blank">
                             <img src={sosmed.img} alt={sosmed.alt} />
                           </a>
                         </TooltipTrigger>

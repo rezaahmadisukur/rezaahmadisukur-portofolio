@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { Badge } from "./ui/badge";
+import TabsLayout from "./examples/tabs/layout/tabs-layout-2";
 
 const TechStack = () => {
   return (
@@ -20,9 +21,7 @@ const TechStack = () => {
         </div>
         {/* Content Tech Skills */}
         <div className="flex ">
-          <div>
-            <p>test</p>
-          </div>
+          <TabsLayout />
         </div>
       </div>
     </section>
