@@ -1,4 +1,6 @@
 import About from "./components/about";
+import ContactSections03 from "./components/blocks/contact/contact-sections-03";
+import Certificates from "./components/certificates";
 import { Hero1 } from "./components/hero1";
 import PersonalProject from "./components/personal-project";
 import TechStack from "./components/tech-stack";
@@ -22,6 +24,12 @@ const App = () => {
         </section>
         <section>
           <PersonalProject />
+        </section>
+        <section>
+          <Certificates />
+        </section>
+        <section>
+          <ContactSections03 />
         </section>
       </main>
       <BackgroundBeams />

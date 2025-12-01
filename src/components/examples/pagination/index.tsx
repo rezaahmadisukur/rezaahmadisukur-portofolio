@@ -27,12 +27,12 @@ export function PaginationDemo({
     <Pagination className="w-fit">
       <PaginationContent>
         {currentPage > 0 && (
-          <PaginationItem>
+          <PaginationItem className="cursor-pointer">
             <PaginationPrevious onClick={prevPage} />
           </PaginationItem>
         )}
         {Array.from({ length: totalPage }).map((_, index) => (
-          <PaginationItem key={index}>
+          <PaginationItem key={index} className="cursor-pointer">
             <PaginationLink
               onClick={() => goToPage(index)}
               isActive={index === currentPage}
@@ -45,8 +45,7 @@ export function PaginationDemo({
           <PaginationEllipsis />
         </PaginationItem>
         {currentPage !== totalPage - 1 && (
-          <PaginationItem>
-            {/* {console.log(totalPage)} */}
+          <PaginationItem className="cursor-pointer">
             <PaginationNext onClick={nextPage} />
           </PaginationItem>
         )}

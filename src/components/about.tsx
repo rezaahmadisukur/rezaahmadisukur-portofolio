@@ -4,30 +4,6 @@ import { Badge } from "./ui/badge";
 import { PixelImage } from "./ui/pixel-image";
 import { useRef } from "react";
 import { useInView } from "motion/react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-
-const sosmeds = [
-  {
-    img: "/public/assets/icons/sosmed/facebook.svg",
-    alt: "Facebook",
-    link: ""
-  },
-  {
-    img: "/public/assets/icons/sosmed/github.svg",
-    alt: "Github",
-    link: ""
-  },
-  {
-    img: "/public/assets/icons/sosmed/instagram.svg",
-    alt: "Instagram",
-    link: ""
-  },
-  {
-    img: "/public/assets/icons/sosmed/linkedin.svg",
-    alt: "Linked In",
-    link: ""
-  }
-];
 
 const About = () => {
   const ref = useRef(null);
@@ -102,31 +78,6 @@ const About = () => {
                   several projects that leverage the power of decentralized
                   systems to create secure and transparent applications.
                 </p>
-                <div className="flex flex-col gap-5 items-center lg:items-start">
-                  <p className="text-3xl font-bold text-primary underline">
-                    Let's we be friend
-                  </p>
-                  <div className="flex gap-3">
-                    {sosmeds.map((sosmed, index) => (
-                      <Tooltip key={index}>
-                        <TooltipTrigger
-                          className="w-10 p-1 rounded-md hover:-translate-y-1 cursor-pointer border border-foreground dark:bg-accent transition-all duration-300"
-                          asChild
-                        >
-                          <a href="#" target="_blank">
-                            <img src={sosmed.img} alt={sosmed.alt} />
-                          </a>
-                        </TooltipTrigger>
-                        <TooltipContent
-                          side="bottom"
-                          className="px-2 py-1 text-xs"
-                        >
-                          <p>{sosmed.alt}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           </div>

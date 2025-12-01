@@ -24,17 +24,14 @@ const CardProject = ({ project }: { project: ProjectType }) => {
   return (
     <Card className="w-full max-w-md overflow-hidden hover:ring-2 hover:ring-foreground transition-all duration-300">
       <CardHeader className="p-0">
-        {/** biome-ignore lint/performance/noImgElement: "Kibo UI is framework agnostic" */}
         <img
           alt=""
-          height={1380}
           src={project.image || "/public/assets/icons/others/not-found.jpg"}
-          width={2070}
         />
       </CardHeader>
       <CardContent className="flex flex-col items-center text-center">
         <CardTitle>{project.title}</CardTitle>
-        <CardDescription className="line-clamp-3 mt-5">
+        <CardDescription className="line-clamp-2 mt-5">
           {project.desc?.en}
         </CardDescription>
       </CardContent>
