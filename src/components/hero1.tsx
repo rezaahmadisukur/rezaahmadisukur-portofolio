@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BorderBeam } from "./ui/border-beam";
 import { TypingAnimation } from "./ui/typing-animation";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
+import { ShinyButton } from "./ui/shiny-button";
 
 interface Hero1Props {
   badge?: string;
@@ -38,7 +39,7 @@ const Hero1 = ({
     },
     secondary: {
       text: "Hire Me",
-      url: ""
+      url: "#contact"
     }
   },
   image = {
@@ -49,9 +50,9 @@ const Hero1 = ({
   return (
     <section className="py-20">
       <div className="container">
-        <div className="grid items-center gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+        <div className="grid items-center gap-8 xl:grid-cols-3">
+          <div className="xl:col-span-2">
+            <div className="flex flex-col items-center text-center xl:items-start xl:text-left">
               {badge && (
                 <Badge variant={"outline"}>
                   <AnimatedGradientText className="flex">
@@ -60,7 +61,7 @@ const Hero1 = ({
                   </AnimatedGradientText>
                 </Badge>
               )}
-              <div className="my-6 text-4xl font-bold lg:text-6xl text-center lg:text-start">
+              <div className="my-6 text-4xl font-bold xl:text-6xl text-center xl:text-start">
                 <h1 className="">
                   <span className="uppercase">{heading}</span>
                 </h1>
@@ -71,14 +72,14 @@ const Hero1 = ({
                     deleteSpeed={150}
                     pauseDelay={2000}
                     loop
-                    className="text-primary lg:text-4xl"
+                    className="text-primary xl:text-4xl"
                   />
                 </p>
               </div>
-              <p className="text-muted-foreground mb-8 max-w-xl lg:text-xl">
+              <p className="text-muted-foreground mb-8 max-w-xl xl:text-xl">
                 {description}
               </p>
-              <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
+              <div className="flex w-full flex-col justify-center gap-2 sm:flex-row xl:justify-start">
                 {buttons.primary && (
                   <Button asChild className="w-full sm:w-auto">
                     <a href={buttons.primary.url}>
@@ -88,22 +89,21 @@ const Hero1 = ({
                   </Button>
                 )}
                 {buttons.secondary && (
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full sm:w-auto"
-                  >
-                    <a href={buttons.secondary.url}>
+                  <ShinyButton>
+                    <a
+                      href={buttons.secondary.url}
+                      className="flex items-center gap-1 capitalize"
+                    >
                       {buttons.secondary.text}
                       <ArrowRight className="size-4" />
                     </a>
-                  </Button>
+                  </ShinyButton>
                 )}
               </div>
             </div>
           </div>
-          <div className="flex justify-center items-center lg:col-span-1">
-            <div className="flex justify-center items-center border rounded-full overflow-hidden relative w-1/2 lg:w-full bg-accent shadow-xl sm:w-2/3 xs:w-full">
+          <div className="flex justify-center items-center xl:col-span-1">
+            <div className="flex justify-center items-center border rounded-full overflow-hidden relative w-full md:w-1/2 lg:w-1/2 xl:w-full bg-accent shadow-xl">
               <div className="w-full flex justify-center backdrop-blur-xl">
                 <img
                   src={image.src}

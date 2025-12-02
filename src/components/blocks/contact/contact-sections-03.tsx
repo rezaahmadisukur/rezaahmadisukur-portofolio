@@ -38,11 +38,11 @@ const sosmeds = [
 const DATA = [
   {
     icon: Phone,
-    info: "+1(424) 535 3523"
+    info: "+62 896 7136 3364"
   },
   {
     icon: Mail,
-    info: "hello@mail.com"
+    info: "rezaahmadisukur1309@gmail.com"
   },
   {
     icon: MapPin,
@@ -54,12 +54,12 @@ export const title = "Contact Form with Dark Card";
 
 export default function ContactSections03() {
   return (
-    <section className="py-16">
+    <section className="py-20">
       <div className="container mx-auto">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-10">
           <Badge variant={"outline"}>
             <AnimatedGradientText className="flex">
-              👽 Contact Me
+              👽 Contact
               <ArrowUpRight className="ml-2 size-4 text-accent-foreground" />
             </AnimatedGradientText>
           </Badge>
@@ -103,6 +103,7 @@ export default function ContactSections03() {
                 id="message"
                 placeholder="Something about your request."
                 rows={5}
+                cols={40}
                 className="resize-none"
               />
             </div>
@@ -121,11 +122,16 @@ export default function ContactSections03() {
               </p>
               <div className="space-y-6">
                 {DATA.map(({ icon: Icon, info }, key) => (
-                  <div key={key} className="flex items-center gap-4">
+                  <div
+                    key={key}
+                    className="flex flex-col items-center lg:items-start xl:flex-row gap-4"
+                  >
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
                       <Icon className="h-5 w-5 text-white" />
                     </div>
-                    <span className="text-gray-200">{info}</span>
+                    <span className="text-gray-200 text-sm lg:text-lg">
+                      {info}
+                    </span>
                   </div>
                 ))}
               </div>

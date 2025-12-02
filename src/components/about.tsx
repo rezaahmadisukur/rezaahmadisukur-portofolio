@@ -10,14 +10,14 @@ const About = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="py-15">
+    <section className="py-20">
       <div className="container">
-        <div className="grid items-center lg:grid-cols-3 gap-15 lg:gap-50">
-          <div className="lg:col-span-1">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+        <div className="grid items-center xl:grid-cols-3 gap-15 xl:gap-50">
+          <div className="xl:col-span-1">
+            <div className="flex flex-col items-center text-center xl:items-start xl:text-left">
               <Badge variant={"outline"}>
                 <AnimatedGradientText className="flex">
-                  👾 About Me
+                  👾 About
                   <ArrowUpRight className="ml-2 size-4 text-accent-foreground" />
                 </AnimatedGradientText>
               </Badge>
@@ -34,10 +34,10 @@ const About = () => {
             </div>
           </div>
           {/* Content About Me */}
-          <div className="lg:col-span-2">
-            <div className="flex flex-col gap-10 lg:items-start items-center">
-              <div className="text-4xl lg:text-5xl font-bold">
-                <h1 className="flex flex-col gap-3 w-full lg:items-start items-center">
+          <div className="xl:col-span-2">
+            <div className="flex flex-col gap-10 xl:items-start items-center">
+              <div className="text-3xl lg:text-4xl xl:text-5xl font-bold">
+                <h1 className="flex flex-col gap-3 w-full xl:items-start items-center">
                   <span className="flex gap-3">
                     Hi there !
                     <img
@@ -54,7 +54,7 @@ const About = () => {
                   </div>
                 </h1>
               </div>
-              <div className="flex flex-col gap-10 items-center lg:items-start text-center lg:text-start">
+              <div className="flex flex-col gap-10 items-center xl:items-start text-center xl:text-start">
                 <p>
                   An aspiring Web Developer focused on building functional and
                   user-friendly websites. I enjoy the process of turning code

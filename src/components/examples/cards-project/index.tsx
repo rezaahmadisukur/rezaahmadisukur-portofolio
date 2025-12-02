@@ -7,6 +7,8 @@ import {
   CardHeader,
   CardTitle
 } from "../../ui/card";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github } from "lucide-react";
 
 export const title = "Image Card";
 
@@ -31,7 +33,7 @@ const CardProject = ({ project }: { project: ProjectType }) => {
       </CardHeader>
       <CardContent className="flex flex-col items-center text-center">
         <CardTitle>{project.title}</CardTitle>
-        <CardDescription className="line-clamp-2 mt-5">
+        <CardDescription className="line-clamp-3 mt-5">
           {project.desc?.en}
         </CardDescription>
       </CardContent>
@@ -42,7 +44,20 @@ const CardProject = ({ project }: { project: ProjectType }) => {
           </Badge>
         ))}
       </div>
-      <CardFooter></CardFooter>
+      <CardFooter className="flex gap-5">
+        <div className="w-full">
+          <Button className="w-full cursor-pointer" variant={"outline"}>
+            <a href="">Github</a>
+            <Github />
+          </Button>
+        </div>
+        <div className="w-full">
+          <Button className="w-full cursor-pointer">
+            <a href="">Live Demo</a>
+            <ExternalLink />
+          </Button>
+        </div>
+      </CardFooter>
     </Card>
   );
 };

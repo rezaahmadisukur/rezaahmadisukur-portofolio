@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useEffect, useState, useRef, useId } from "react";
 import {
-  FileTextIcon,
   GlobeIcon,
   HomeIcon,
   LayersIcon,
@@ -9,12 +8,14 @@ import {
   SunIcon,
   MoonIcon,
   // UserIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
+  ChevronsLeftRightEllipsisIcon,
+  AwardIcon,
+  Contact
 } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList
 } from "../../navigation-menu";
 import { Popover, PopoverContent, PopoverTrigger } from "../../popover";
@@ -239,10 +240,22 @@ export interface Navbar06Props extends React.HTMLAttributes<HTMLElement> {
 
 // Default navigation links with icons
 const defaultNavigationLinks: Navbar06NavItem[] = [
-  { href: "#", label: "Dashboard", icon: HomeIcon, active: true },
-  { href: "#", label: "Projects", icon: LayersIcon },
-  { href: "#", label: "Documentation", icon: FileTextIcon },
-  { href: "#", label: "Team", icon: UsersIcon }
+  { href: "#home", label: "Home", icon: HomeIcon, active: false },
+  { href: "#about", label: "About Me", icon: UsersIcon, active: false },
+  { href: "#techs", label: "Tech Stack", icon: LayersIcon, active: false },
+  {
+    href: "#projects",
+    label: "Personal Projects",
+    icon: ChevronsLeftRightEllipsisIcon,
+    active: false
+  },
+  {
+    href: "#certificates",
+    label: "Certificates",
+    icon: AwardIcon,
+    active: false
+  },
+  { href: "#contact", label: "Contact", icon: Contact, active: false }
 ];
 
 // Default language options
@@ -384,22 +397,19 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
                           <NavigationMenuItem key={link.label}>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <NavigationMenuLink
+                                <a
                                   href={link.href}
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    if (onNavItemClick && link.href)
-                                      onNavItemClick(link.href);
-                                  }}
                                   className={cn(
-                                    "flex size-8 items-center justify-center p-1.5 rounded-md transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer",
+                                    "flex flex-row items-center justify-center p-1.5 rounded-md transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer text-xs gap-2",
                                     link.active &&
                                       "bg-accent text-accent-foreground"
                                   )}
                                 >
-                                  <Icon size={20} aria-hidden={true} />
-                                  <span className="sr-only">{link.label}</span>
-                                </NavigationMenuLink>
+                                  <Icon size={15} aria-hidden={true} />
+                                  {link.active && (
+                                    <span className="">{link.label}</span>
+                                  )}
+                                </a>
                               </TooltipTrigger>
                               <TooltipContent
                                 side="bottom"

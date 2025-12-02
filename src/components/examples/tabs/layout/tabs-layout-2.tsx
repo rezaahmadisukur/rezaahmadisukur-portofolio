@@ -1,4 +1,10 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsContents,
+  TabsList,
+  TabsTrigger
+} from "@/components/animate-ui/components/animate/tabs";
 import TabsBadge from "../../tabs-badge";
 
 export const title = "Full Width Tabs";
@@ -6,48 +12,50 @@ export const title = "Full Width Tabs";
 const TabsLayout = () => {
   return (
     <Tabs className="w-full max-w-full mx-auto mt-10" defaultValue="language">
-      <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 max-w-2xl mx-auto bg-secondary">
+      <TabsList className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-2xl mx-auto bg-secondary h-auto">
         <TabsTrigger value="language">Languages & Tools</TabsTrigger>
         <TabsTrigger value="backend">Backend & APIs</TabsTrigger>
         <TabsTrigger value="library">Frameworks & Libraries</TabsTrigger>
         <TabsTrigger value="databases">Databases & Clouds</TabsTrigger>
       </TabsList>
-      <TabsContent value="language">
-        <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm flex gap-5 flex-wrap">
-          {Langs.map((item, index) => (
-            <div key={index}>
-              <TabsBadge Lang={item} />
-            </div>
-          ))}
-        </div>
-      </TabsContent>
-      <TabsContent value="backend">
-        <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm flex gap-5 flex-wrap">
-          {backends.map((item, index) => (
-            <div key={index}>
-              <TabsBadge Lang={item} />
-            </div>
-          ))}
-        </div>
-      </TabsContent>
-      <TabsContent value="library">
-        <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm flex gap-5 flex-wrap">
-          {frameworks.map((item, index) => (
-            <div key={index}>
-              <TabsBadge Lang={item} />
-            </div>
-          ))}
-        </div>
-      </TabsContent>
-      <TabsContent value="databases">
-        <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm flex gap-5 flex-wrap">
-          {databases.map((item, index) => (
-            <div key={index}>
-              <TabsBadge Lang={item} />
-            </div>
-          ))}
-        </div>
-      </TabsContent>
+      <TabsContents>
+        <TabsContent value="language">
+          <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm flex gap-5 flex-wrap">
+            {Langs.map((item, index) => (
+              <div key={index}>
+                <TabsBadge Lang={item} />
+              </div>
+            ))}
+          </div>
+        </TabsContent>
+        <TabsContent value="backend">
+          <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm flex gap-5 flex-wrap">
+            {backends.map((item, index) => (
+              <div key={index}>
+                <TabsBadge Lang={item} />
+              </div>
+            ))}
+          </div>
+        </TabsContent>
+        <TabsContent value="library">
+          <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm flex gap-5 flex-wrap">
+            {frameworks.map((item, index) => (
+              <div key={index}>
+                <TabsBadge Lang={item} />
+              </div>
+            ))}
+          </div>
+        </TabsContent>
+        <TabsContent value="databases">
+          <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm flex gap-5 flex-wrap">
+            {databases.map((item, index) => (
+              <div key={index}>
+                <TabsBadge Lang={item} />
+              </div>
+            ))}
+          </div>
+        </TabsContent>
+      </TabsContents>
     </Tabs>
   );
 };

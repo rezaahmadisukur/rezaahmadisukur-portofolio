@@ -5,7 +5,7 @@ import { CardCertificate } from "./examples/card-certificate";
 
 const Certificates = () => {
   return (
-    <section className="py-15">
+    <section className="py-20">
       <div className="container">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-10">
           <Badge variant={"outline"}>

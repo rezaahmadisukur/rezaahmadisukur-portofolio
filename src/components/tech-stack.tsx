@@ -5,12 +5,12 @@ import TabsLayout from "./examples/tabs/layout/tabs-layout-2";
 
 const TechStack = () => {
   return (
-    <section className="py-15">
+    <section className="py-20">
       <div className="container">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-10">
           <Badge variant={"outline"}>
             <AnimatedGradientText className="flex">
-              🤖 Tech Stack
+              🤖 Techs
               <ArrowUpRight className="ml-2 size-4 text-accent-foreground" />
             </AnimatedGradientText>
           </Badge>
