@@ -2,8 +2,11 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { Badge } from "./ui/badge";
 import { CardCertificate } from "./examples/card-certificate";
+import { useContext } from "react";
+import { Context } from "@/contexts/context";
 
 const Certificates = () => {
+  const { lang } = useContext(Context);
   return (
     <section className="py-20">
       <div className="container">
@@ -30,7 +33,7 @@ const Certificates = () => {
                   />
                 </svg>
               </span>
-              Certificates
+              {lang == "en" ? "Certificates" : "Sertifikat"}
             </h1>
           </div>
         </div>

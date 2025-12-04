@@ -3,12 +3,14 @@
     {
       "id": 1,
       "title": "Nimbly",
-      "image": "",
+      "image": "/public/assets/images/projects/project-1.png",
       "desc": {
         "en": "Nimbly is a mini e-commerce website that i built using React and TypeScript with a filtering system",
         "id": "Nimbly adalah situs web mini e-commerce yang saya bangun menggunakan React dan TypeScript dengan sistem penyaringan."
       },
-      "category": ["React", "Typescript", "Redux", "Localstorage"]
+      "category": ["React", "Typescript", "Redux", "Localstorage"],
+      "demo": "https://nimbly-store.vercel.app",
+      "github": "https://github.com/rezaahmadisukur/nimbly"
     },
     {
       "id": 2,

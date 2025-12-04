@@ -6,12 +6,16 @@ import { BorderBeam } from "./ui/border-beam";
 import { TypingAnimation } from "./ui/typing-animation";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { ShinyButton } from "./ui/shiny-button";
+import { useContext } from "react";
+import { Context } from "@/contexts/context";
 
 interface Hero1Props {
   badge?: string;
-  // greet?: string;
   heading?: string;
-  description?: string;
+  description?: {
+    en?: string;
+    id?: string;
+  };
   buttons?: {
     primary?: {
       text: string;
@@ -31,7 +35,10 @@ interface Hero1Props {
 const Hero1 = ({
   badge = "✨ My Portofolio",
   heading = "Portofolio",
-  description = "A passionate developer with expertise in React, Tailwind CSS, and Javascript technologies . Currently pursuing a Master's in Information System at Bina Sarana Informatika University.",
+  description = {
+    en: "A passionate developer with expertise in React, Tailwind CSS, and Javascript technologies . Currently pursuing a Master's in Information System at Bina Sarana Informatika University.",
+    id: "Seorang pengembang yang bersemangat dengan keahlian dalam teknologi React, Tailwind CSS, dan JavaScript. Saat ini sedang menempuh program Sarjana Sistem Informasi di Universitas Bina Sarana Informatika."
+  },
   buttons = {
     primary: {
       text: "Download CV",
@@ -43,10 +50,11 @@ const Hero1 = ({
     }
   },
   image = {
-    src: "/public/assets/images/chibi.png",
+    src: "/public/assets/images/chibi.webp",
     alt: "Chibi Profile"
   }
 }: Hero1Props) => {
+  const { lang } = useContext(Context);
   return (
     <section className="py-20">
       <div className="container">
@@ -77,39 +85,34 @@ const Hero1 = ({
                 </p>
               </div>
               <p className="text-muted-foreground mb-8 max-w-xl xl:text-xl">
-                {description}
+                {lang == "en" ? description.en : description.id}
               </p>
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row xl:justify-start">
                 {buttons.primary && (
                   <Button asChild className="w-full sm:w-auto">
                     <a href={buttons.primary.url}>
-                      {buttons.primary.text}
+                      {lang == "en" ? buttons.primary.text : "Unduh CV"}
                       <Download />
                     </a>
                   </Button>
                 )}
                 {buttons.secondary && (
-                  <ShinyButton>
-                    <a
-                      href={buttons.secondary.url}
-                      className="flex items-center gap-1 capitalize"
-                    >
-                      {buttons.secondary.text}
-                      <ArrowRight className="size-4" />
-                    </a>
-                  </ShinyButton>
+                  <a href={buttons.secondary.url}>
+                    <ShinyButton>
+                      <span className="flex items-center gap-1 capitalize">
+                        {lang == "en" ? buttons.secondary.text : "Rekrut Saya"}
+                        <ArrowRight className="size-4" />
+                      </span>
+                    </ShinyButton>
+                  </a>
                 )}
               </div>
             </div>
           </div>
           <div className="flex justify-center items-center xl:col-span-1">
-            <div className="flex justify-center items-center border rounded-full overflow-hidden relative w-full md:w-1/2 lg:w-1/2 xl:w-full bg-accent shadow-xl">
-              <div className="w-full flex justify-center backdrop-blur-xl">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="max-h-96 rounded-md"
-                />
+            <div className="flex justify-center items-center border rounded-full overflow-hidden relative w-full md:w-1/2 lg:w-1/2 xl:w-full bg-accent">
+              <div className="w-full flex justify-center backdrop-blur-xl h-96">
+                <img src={image.src} alt={image.alt} />
               </div>
               <BorderBeam duration={8} size={300} borderWidth={3} />
             </div>

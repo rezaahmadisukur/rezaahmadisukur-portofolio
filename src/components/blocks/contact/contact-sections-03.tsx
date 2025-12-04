@@ -1,6 +1,12 @@
 "use client";
 
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import {
+  ArrowUpRight,
+  Mail,
+  MapPin,
+  Phone,
+  SendHorizontal
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,27 +17,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { useContext } from "react";
+import { Context } from "@/contexts/context";
 
 const sosmeds = [
   {
     img: "/public/assets/icons/sosmed/facebook.svg",
     alt: "Facebook",
-    link: ""
+    link: "https://www.facebook.com/reza.ahmadi.sukur.39"
   },
   {
     img: "/public/assets/icons/sosmed/github.svg",
     alt: "Github",
-    link: ""
+    link: "https://github.com/rezaahmadisukur"
   },
   {
     img: "/public/assets/icons/sosmed/instagram.svg",
     alt: "Instagram",
-    link: ""
+    link: "https://www.instagram.com/rezaahmadisukur"
   },
   {
     img: "/public/assets/icons/sosmed/linkedin.svg",
     alt: "Linked In",
-    link: ""
+    link: "https://www.linkedin.com/in/reza-ahmadi-sukur-361a7a311"
   }
 ];
 
@@ -53,6 +61,7 @@ const DATA = [
 export const title = "Contact Form with Dark Card";
 
 export default function ContactSections03() {
+  const { lang } = useContext(Context);
   return (
     <section className="py-20">
       <div className="container mx-auto">
@@ -64,8 +73,14 @@ export default function ContactSections03() {
             </AnimatedGradientText>
           </Badge>
           <div className="flex flex-col gap-1">
-            <h1 className="text-4xl lg:text-5xl font-bold">Contact Me</h1>
-            <p>Any questions or remarks? Just write us a message!</p>
+            <h1 className="text-4xl lg:text-5xl font-bold">
+              {lang == "en" ? "Contact Me" : "Hubungi Saya"}
+            </h1>
+            <p>
+              {lang == "en"
+                ? "Any questions or remarks? Just write us a message!"
+                : "Ada pertanyaan atau komentar? Silakan kirim pesan kepada kami!"}
+            </p>
           </div>
         </div>
         <Card className="grid grid-cols-1 items-center gap-10 rounded-2xl p-8 shadow-xl lg:grid-cols-2 lg:p-10 mt-10">
@@ -73,20 +88,20 @@ export default function ContactSections03() {
             <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="first-name" className="text-base">
-                  First Name
+                  {lang == "en" ? "First Name" : "Nama Depan"}
                 </Label>
                 <Input id="first-name" placeholder="John" className="h-11" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="last-name" className="text-base">
-                  Last Name
+                  {lang == "en" ? "Last Name" : "Nama Belakang"}
                 </Label>
                 <Input id="last-name" placeholder="Doe" className="h-11" />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-base">
-                Email Address
+                {lang == "en" ? "Email Address" : "Alamat Email"}
               </Label>
               <Input
                 id="email"
@@ -97,7 +112,7 @@ export default function ContactSections03() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="message" className="text-base">
-                Message
+                {lang == "en" ? "Message" : "Pesan"}
               </Label>
               <Textarea
                 id="message"
@@ -107,18 +122,23 @@ export default function ContactSections03() {
                 className="resize-none"
               />
             </div>
-            <Button className="w-full sm:w-auto sm:min-w-[150px]" size="lg">
-              Send Message
+            <Button
+              className="w-full sm:w-auto sm:min-w-[150px] flex gap-1"
+              size="lg"
+            >
+              {lang == "en" ? "Send Message" : "Kirim Pesan"}
+              <SendHorizontal />
             </Button>
           </form>
           <div className="flex flex-col justify-between rounded-xl bg-linear-to-br from-gray-900 to-black p-8 lg:p-12">
             <div>
               <h3 className="mb-4 text-2xl font-bold text-white">
-                Contact Information
+                {lang == "en" ? "Contact Information" : "Informasi Kontak"}
               </h3>
               <p className="mb-12 max-w-lg text-gray-300">
-                Fill up the form and our Team will get back to you within 24
-                hours.
+                {lang == "en"
+                  ? "Fill up the form and our Team will get back to you within 24 hours."
+                  : "Isi formulir ini dan tim kami akan menghubungi Anda dalam waktu 24 jam."}
               </p>
               <div className="space-y-6">
                 {DATA.map(({ icon: Icon, info }, key) => (
@@ -138,7 +158,7 @@ export default function ContactSections03() {
             </div>
             <div className="flex flex-col gap-3 items-center lg:items-start mt-10">
               <p className="text-xl font-bold text-primary underline">
-                Connect with me
+                {lang == "en" ? "Connect with me" : "Terhubung dengan saya"}
               </p>
               <div className="flex gap-3">
                 {sosmeds.map((sosmed, index) => (
@@ -147,7 +167,7 @@ export default function ContactSections03() {
                       className="w-10 p-1 rounded-md hover:-translate-y-1 cursor-pointer  transition-all duration-300"
                       asChild
                     >
-                      <a href="#" target="_blank">
+                      <a href={sosmed.link} target="_blank">
                         <img src={sosmed.img} alt={sosmed.alt} />
                       </a>
                     </TooltipTrigger>

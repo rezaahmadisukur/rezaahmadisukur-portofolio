@@ -1,20 +1,32 @@
 [
   {
-    "img": "/public/assets/certificates/C1.jpg"
+    "img": "/public/assets/certificates/C1.jpg",
+    "title": "Web Developer Series 4.0 - Frontend - Dibimbing.com",
+    "date": "Jul 26, 2024"
   },
   {
-    "img": "/public/assets/certificates/C2.jpg"
+    "img": "/public/assets/certificates/C2.jpg",
+    "title": "Fundamental Frontend Web I - Coding Studio",
+    "date": "April 27, 2025"
   },
   {
-    "img": "/public/assets/certificates/C3.jpg"
+    "img": "/public/assets/certificates/C3.jpg",
+    "title": "Fundamental Frontend Web II - Coding Studio",
+    "date": "April 30, 2025"
   },
   {
-    "img": "/public/assets/certificates/C4.jpg"
+    "img": "/public/assets/certificates/C4.jpg",
+    "title": "Learn HTTP for Beginners - Programmer Zaman Now",
+    "date": "Mei 14, 2025"
   },
   {
-    "img": "/public/assets/certificates/C5.jpg"
+    "img": "/public/assets/certificates/C5.jpg",
+    "title": "Workshop UI/UX Design - Universitas BSI Cikampek",
+    "date": "Mei 21, 2025"
   },
   {
-    "img": "/public/assets/certificates/C6.jpg"
+    "img": "/public/assets/certificates/C6.jpg",
+    "title": "Database Competency Test - PT Jidoka and Universitas BSI",
+    "date": "July 01, 2025"
   }
 ]

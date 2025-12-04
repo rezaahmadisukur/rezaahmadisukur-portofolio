@@ -1,13 +1,11 @@
 import * as React from "react";
 import { useEffect, useState, useRef, useId } from "react";
 import {
-  GlobeIcon,
   HomeIcon,
   LayersIcon,
   UsersIcon,
   SunIcon,
   MoonIcon,
-  // UserIcon,
   ChevronDownIcon,
   ChevronsLeftRightEllipsisIcon,
   AwardIcon,
@@ -45,6 +43,7 @@ import { cn } from "../../../../lib/utils";
 import { Button } from "../../button";
 import { useTheme } from "@/components/theme-provider";
 import { AnimatedThemeToggler } from "../../animated-theme-toggler";
+import { Context } from "@/contexts/context";
 
 // Simple logo component for the navbar
 const Logo = (props: React.SVGAttributes<SVGElement>) => {
@@ -221,6 +220,7 @@ export interface Navbar06NavItem {
 export interface Navbar06Language {
   value: string;
   label: string;
+  flag?: string;
 }
 
 export interface Navbar06Props extends React.HTMLAttributes<HTMLElement> {
@@ -239,29 +239,29 @@ export interface Navbar06Props extends React.HTMLAttributes<HTMLElement> {
 }
 
 // Default navigation links with icons
-const defaultNavigationLinks: Navbar06NavItem[] = [
-  { href: "#home", label: "Home", icon: HomeIcon, active: false },
-  { href: "#about", label: "About Me", icon: UsersIcon, active: false },
-  { href: "#techs", label: "Tech Stack", icon: LayersIcon, active: false },
-  {
-    href: "#projects",
-    label: "Personal Projects",
-    icon: ChevronsLeftRightEllipsisIcon,
-    active: false
-  },
-  {
-    href: "#certificates",
-    label: "Certificates",
-    icon: AwardIcon,
-    active: false
-  },
-  { href: "#contact", label: "Contact", icon: Contact, active: false }
-];
+// const defaultNavigationLinks: Navbar06NavItem[] = [
+//   { href: "#home", label: "Home", icon: HomeIcon, active: true },
+//   { href: "#about", label: "About Me", icon: UsersIcon, active: false },
+//   { href: "#techs", label: "Tech Stack", icon: LayersIcon, active: false },
+//   {
+//     href: "#projects",
+//     label: "Personal Projects",
+//     icon: ChevronsLeftRightEllipsisIcon,
+//     active: false
+//   },
+//   {
+//     href: "#certificates",
+//     label: "Certificates",
+//     icon: AwardIcon,
+//     active: false
+//   },
+//   { href: "#contact", label: "Contact", icon: Contact, active: false }
+// ];
 
 // Default language options
 const defaultLanguages: Navbar06Language[] = [
-  { value: "en", label: "En" },
-  { value: "id", label: "Id" }
+  { value: "en", label: "En", flag: "/public/assets/icons/flags/en.svg" },
+  { value: "id", label: "Id", flag: "/public/assets/icons/flags/id.svg" }
 ];
 
 export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
@@ -270,11 +270,9 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
       className,
       logo = <Logo />,
       // logoHref = "#",
-      navigationLinks = defaultNavigationLinks,
+      // navigationLinks = navLinks,
       languages = defaultLanguages,
-      defaultLanguage = "en",
       onNavItemClick,
-      onLanguageChange,
       // onThemeChange,
       ...props
     },
@@ -283,6 +281,33 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLElement>(null);
     const selectId = useId();
+    const { lang, setLang } = React.useContext(Context);
+    // const [activeLink, setActiveLink] = useState<string>("#home");
+    const [navLinks, setNavLinks] = useState<Navbar06NavItem[]>([
+      { href: "#home", label: "Home", icon: HomeIcon, active: true },
+      { href: "#about", label: "About Me", icon: UsersIcon, active: false },
+      { href: "#techs", label: "Tech Stack", icon: LayersIcon, active: false },
+      {
+        href: "#projects",
+        label: "Personal Projects",
+        icon: ChevronsLeftRightEllipsisIcon,
+        active: false
+      },
+      {
+        href: "#certificates",
+        label: "Certificates",
+        icon: AwardIcon,
+        active: false
+      },
+      { href: "#contact", label: "Contact", icon: Contact, active: false }
+    ]);
+
+    const handleSetActive = (href: string) => {
+      // setActiveLink(href);
+      setNavLinks((prevLink) =>
+        prevLink.map((link) => ({ ...link, active: link.href === href }))
+      );
+    };
 
     useEffect(() => {
       const checkWidth = () => {
@@ -344,7 +369,7 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
                 <PopoverContent align="start" className="w-64 p-1">
                   <NavigationMenu className="max-w-none">
                     <NavigationMenuList className="flex-col items-start gap-0">
-                      {navigationLinks.map((link, index) => {
+                      {navLinks.map((link, index) => {
                         const Icon = link.icon;
                         return (
                           <NavigationMenuItem key={index} className="w-full">
@@ -391,7 +416,7 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
                 <NavigationMenu className="flex">
                   <NavigationMenuList className="gap-2">
                     <TooltipProvider>
-                      {navigationLinks.map((link) => {
+                      {navLinks.map((link) => {
                         const Icon = link.icon;
                         return (
                           <NavigationMenuItem key={link.label}>
@@ -399,6 +424,13 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
                               <TooltipTrigger asChild>
                                 <a
                                   href={link.href}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    handleSetActive(link.href as string);
+                                    document
+                                      .querySelector(link.href as string)
+                                      ?.scrollIntoView({ behavior: "smooth" });
+                                  }}
                                   className={cn(
                                     "flex flex-row items-center justify-center p-1.5 rounded-md transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer text-xs gap-2",
                                     link.active &&
@@ -429,27 +461,25 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
           </div>
           {/* Right side */}
           <div className="flex items-center gap-2">
-            {/* Theme toggle */}
-            {/* <ThemeToggle onThemeChange={onThemeChange} /> */}
+            {/* Toogle DarkMode */}
             <AnimatedThemeToggler className="text-popover-foreground/50 cursor-pointer w-7  flex justify-center items-center p-1 rounded" />
             {/* Language selector */}
-            <Select
-              defaultValue={defaultLanguage}
-              onValueChange={onLanguageChange}
-            >
+            <Select defaultValue={lang} onValueChange={setLang}>
               <SelectTrigger
                 id={`language-${selectId}`}
                 className="[&>svg]:text-muted-foreground/80 hover:bg-accent hover:text-accent-foreground h-8 border-none px-2 shadow-none [&>svg]:shrink-0"
                 aria-label="Select language"
               >
-                <GlobeIcon size={16} aria-hidden={true} />
                 <SelectValue className="hidden sm:inline-flex" />
               </SelectTrigger>
               <SelectContent className="[&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2">
-                {languages.map((lang) => (
-                  <SelectItem key={lang.value} value={lang.value}>
+                {languages.map((lang, index) => (
+                  <SelectItem key={index} value={lang.value}>
                     <span className="flex items-center gap-2">
-                      <span className="truncate">{lang.label}</span>
+                      <p className="flex gap-3">
+                        <img src={lang.flag} alt={lang.label} width={20} />
+                        <span className="truncate">{lang.label}</span>
+                      </p>
                     </span>
                   </SelectItem>
                 ))}

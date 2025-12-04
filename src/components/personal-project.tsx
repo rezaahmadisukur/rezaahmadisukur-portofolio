@@ -2,8 +2,9 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { Badge } from "./ui/badge";
 import CardProject from "./examples/cards-project";
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { PaginationDemo } from "./examples/pagination";
+import { Context } from "@/contexts/context";
 
 interface ProjectType {
   title?: string;
@@ -20,6 +21,7 @@ const PersonalProject = () => {
   const itemPerPage = 3;
   const [currentPage, setCurrentPage] = useState<number>(0);
   const totalPage = Math.ceil(projects.length / itemPerPage);
+  const { lang } = useContext(Context);
 
   const currentItems = projects.slice(
     currentPage * itemPerPage,
@@ -38,12 +40,12 @@ const PersonalProject = () => {
     setCurrentPage(page);
   };
 
-  const getProjects = async () => {
+  const getProjects = useCallback(async () => {
     const response = await fetch("/src/data/projects.json").then((res) =>
       res.json()
     );
     setProjects(response.data);
-  };
+  }, []);
 
   useEffect(() => {
     const load = async () => {
@@ -51,7 +53,7 @@ const PersonalProject = () => {
     };
 
     load();
-  }, [projects]);
+  }, [getProjects]);
 
   return (
     <section className="py-20">
@@ -79,9 +81,13 @@ const PersonalProject = () => {
                   />
                 </svg>
               </span>
-              Personal Projects
+              {lang == "en" ? "Personal Projects" : "proyek pribadi"}
             </h1>
-            <p>A showcase of my work across various technologies</p>
+            <p>
+              {lang == "en"
+                ? "A showcase of my work across various technologies"
+                : "Pameran karya saya di berbagai teknologi"}
+            </p>
           </div>
         </div>
         {/* Content Project */}
@@ -97,7 +103,7 @@ const PersonalProject = () => {
         </div>
         <div className="flex justify-between items-center mt-5">
           <p className="text-xs">
-            Page {currentPage + 1} of {totalPage}
+            {lang == "en" ? "Page" : "Halaman"} {currentPage + 1} of {totalPage}
           </p>
           <div>
             <PaginationDemo
