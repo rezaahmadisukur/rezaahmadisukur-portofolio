@@ -9,23 +9,27 @@ import {
 const footerLinks = [
   {
     title: "Home",
-    href: "#"
+    href: "#home"
   },
   {
     title: "About",
-    href: "#"
+    href: "#about"
+  },
+  {
+    title: "Tech",
+    href: "#techs"
   },
   {
     title: "Projects",
-    href: "#"
+    href: "#projects"
   },
   {
     title: "Certificates",
-    href: "#"
+    href: "#certificates"
   },
   {
     title: "Contact",
-    href: "#"
+    href: "#contact"
   }
 ];
 

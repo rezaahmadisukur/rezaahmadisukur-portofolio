@@ -2,9 +2,10 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { Badge } from "./ui/badge";
 import CardProject from "./examples/cards-project";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { PaginationDemo } from "./examples/pagination";
 import { Context } from "@/contexts/context";
+import { motion, useInView } from "motion/react";
 
 interface ProjectType {
   title?: string;
@@ -22,6 +23,8 @@ const PersonalProject = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const totalPage = Math.ceil(projects.length / itemPerPage);
   const { lang } = useContext(Context);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   const currentItems = projects.slice(
     currentPage * itemPerPage,
@@ -92,7 +95,13 @@ const PersonalProject = () => {
         </div>
         {/* Content Project */}
 
-        <div className="mt-10 grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+        <motion.div
+          ref={ref}
+          initial={{ y: 100, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mt-10 grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-5 "
+        >
           {/* Card */}
           {currentItems.length > 0 &&
             currentItems.map((project, index) => (
@@ -100,7 +109,7 @@ const PersonalProject = () => {
                 <CardProject project={project} />
               </div>
             ))}
-        </div>
+        </motion.div>
         <div className="flex justify-between items-center mt-5">
           <p className="text-xs">
             {lang == "en" ? "Page" : "Halaman"} {currentPage + 1} of {totalPage}

@@ -8,8 +8,25 @@ import Certificates from "./components/certificates";
 import About from "./components/about";
 import TechStack from "./components/tech-stack";
 import PersonalProject from "./components/personal-project";
+import { useEffect, useState } from "react";
+import SplashScreen from "./components/splash-screen";
+import LazySection from "./components/lazy-section";
 
 const App = () => {
+  const [isLoadingScreen, setIsLoadingScreen] = useState<boolean>(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadingScreen(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoadingScreen) {
+    return <SplashScreen />;
+  }
+
   return (
     <div className="select-none">
       <Navbar06 />
@@ -18,21 +35,21 @@ const App = () => {
       </header>
 
       <main className="w-10/12 mx-auto">
-        <section id="about">
+        <LazySection id="about">
           <About />
-        </section>
-        <section id="techs">
+        </LazySection>
+        <LazySection id="techs">
           <TechStack />
-        </section>
-        <section id="projects">
+        </LazySection>
+        <LazySection id="projects">
           <PersonalProject />
-        </section>
-        <section id="certificates">
+        </LazySection>
+        <LazySection id="certificates">
           <Certificates />
-        </section>
-        <section id="contact">
+        </LazySection>
+        <LazySection id="contact">
           <ContactSections03 />
-        </section>
+        </LazySection>
       </main>
 
       <footer>

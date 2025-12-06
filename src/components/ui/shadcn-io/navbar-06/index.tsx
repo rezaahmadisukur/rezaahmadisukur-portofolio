@@ -238,26 +238,6 @@ export interface Navbar06Props extends React.HTMLAttributes<HTMLElement> {
   onUserItemClick?: (item: string) => void;
 }
 
-// Default navigation links with icons
-// const defaultNavigationLinks: Navbar06NavItem[] = [
-//   { href: "#home", label: "Home", icon: HomeIcon, active: true },
-//   { href: "#about", label: "About Me", icon: UsersIcon, active: false },
-//   { href: "#techs", label: "Tech Stack", icon: LayersIcon, active: false },
-//   {
-//     href: "#projects",
-//     label: "Personal Projects",
-//     icon: ChevronsLeftRightEllipsisIcon,
-//     active: false
-//   },
-//   {
-//     href: "#certificates",
-//     label: "Certificates",
-//     icon: AwardIcon,
-//     active: false
-//   },
-//   { href: "#contact", label: "Contact", icon: Contact, active: false }
-// ];
-
 // Default language options
 const defaultLanguages: Navbar06Language[] = [
   { value: "en", label: "En", flag: "/public/assets/icons/flags/en.svg" },
@@ -266,23 +246,13 @@ const defaultLanguages: Navbar06Language[] = [
 
 export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
   (
-    {
-      className,
-      logo = <Logo />,
-      // logoHref = "#",
-      // navigationLinks = navLinks,
-      languages = defaultLanguages,
-      onNavItemClick,
-      // onThemeChange,
-      ...props
-    },
+    { className, logo = <Logo />, languages = defaultLanguages, ...props },
     ref
   ) => {
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLElement>(null);
     const selectId = useId();
     const { lang, setLang } = React.useContext(Context);
-    // const [activeLink, setActiveLink] = useState<string>("#home");
     const [navLinks, setNavLinks] = useState<Navbar06NavItem[]>([
       { href: "#home", label: "Home", icon: HomeIcon, active: true },
       { href: "#about", label: "About Me", icon: UsersIcon, active: false },
@@ -303,7 +273,6 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
     ]);
 
     const handleSetActive = (href: string) => {
-      // setActiveLink(href);
       setNavLinks((prevLink) =>
         prevLink.map((link) => ({ ...link, active: link.href === href }))
       );
@@ -342,6 +311,54 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
       [ref]
     );
 
+    // Tambahkan useEffect baru untuk IntersectionObserver:
+    useEffect(() => {
+      const observerOptions = {
+        root: null,
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0
+      };
+
+      const observerCallback = (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.getAttribute("id");
+            if (sectionId) {
+              handleSetActive(`#${sectionId}`);
+            }
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        observerCallback,
+        observerOptions
+      );
+
+      // Observe semua sections
+      const sections = document.querySelectorAll("[id]");
+      sections.forEach((section) => observer.observe(section));
+
+      return () => {
+        sections.forEach((section) => observer.unobserve(section));
+      };
+    }, []);
+
+    // Tambahkan handler untuk scroll smooth ke section saat nav diklik:
+    // const handleNavItemClick = (href: string) => {
+    //   const sectionId = href.replace("#", "");
+    //   const section = document.getElementById(sectionId);
+
+    //   if (section) {
+    //     section.scrollIntoView({ behavior: "smooth" });
+    //     handleSetActive(href);
+    //   }
+
+    //   if (onNavItemClick) {
+    //     onNavItemClick(href);
+    //   }
+    // };
+
     return (
       <header
         ref={combinedRef}
@@ -376,8 +393,9 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
                             <button
                               onClick={(e) => {
                                 e.preventDefault();
-                                if (onNavItemClick && link.href)
-                                  onNavItemClick(link.href);
+                                document
+                                  .querySelector(link.href as string)
+                                  ?.scrollIntoView({ behavior: "smooth" });
                               }}
                               className={cn(
                                 "flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer no-underline",

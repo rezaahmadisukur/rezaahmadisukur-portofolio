@@ -2,13 +2,17 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { Badge } from "./ui/badge";
 import { CardCertificate } from "./examples/card-certificate";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { Context } from "@/contexts/context";
+import { motion, useInView } from "motion/react";
 
 const Certificates = () => {
   const { lang } = useContext(Context);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <section className="py-20">
+    <section className="py-20" ref={ref}>
       <div className="container">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-10">
           <Badge variant={"outline"}>
@@ -38,9 +42,13 @@ const Certificates = () => {
           </div>
         </div>
         {/* Content Certivicates */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <CardCertificate />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

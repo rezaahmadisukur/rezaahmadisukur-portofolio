@@ -13,12 +13,12 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { Context } from "@/contexts/context";
+import { motion, useInView } from "motion/react";
 
 const sosmeds = [
   {
@@ -62,6 +62,9 @@ export const title = "Contact Form with Dark Card";
 
 export default function ContactSections03() {
   const { lang } = useContext(Context);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
     <section className="py-20">
       <div className="container mx-auto">
@@ -83,103 +86,113 @@ export default function ContactSections03() {
             </p>
           </div>
         </div>
-        <Card className="grid grid-cols-1 items-center gap-10 rounded-2xl p-8 shadow-xl lg:grid-cols-2 lg:p-10 mt-10">
-          <form action="#" className="space-y-6">
-            <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="first-name" className="text-base">
-                  {lang == "en" ? "First Name" : "Nama Depan"}
-                </Label>
-                <Input id="first-name" placeholder="John" className="h-11" />
+        <motion.div
+          ref={ref}
+          initial={{ y: 100, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <Card className="grid grid-cols-1 items-center gap-10 rounded-2xl p-8 shadow-xl lg:grid-cols-2 lg:p-10 mt-10">
+            <form action="#" className="space-y-6">
+              <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="first-name" className="text-base">
+                    {lang == "en" ? "First Name" : "Nama Depan"}
+                  </Label>
+                  <Input id="first-name" placeholder="John" className="h-11" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="last-name" className="text-base">
+                    {lang == "en" ? "Last Name" : "Nama Belakang"}
+                  </Label>
+                  <Input id="last-name" placeholder="Doe" className="h-11" />
+                </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="last-name" className="text-base">
-                  {lang == "en" ? "Last Name" : "Nama Belakang"}
+                <Label htmlFor="email" className="text-base">
+                  {lang == "en" ? "Email Address" : "Alamat Email"}
                 </Label>
-                <Input id="last-name" placeholder="Doe" className="h-11" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="someone@example.com"
+                  className="h-11"
+                />
               </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-base">
-                {lang == "en" ? "Email Address" : "Alamat Email"}
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="someone@example.com"
-                className="h-11"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="message" className="text-base">
-                {lang == "en" ? "Message" : "Pesan"}
-              </Label>
-              <Textarea
-                id="message"
-                placeholder="Something about your request."
-                rows={5}
-                cols={40}
-                className="resize-none"
-              />
-            </div>
-            <Button
-              className="w-full sm:w-auto sm:min-w-[150px] flex gap-1"
-              size="lg"
-            >
-              {lang == "en" ? "Send Message" : "Kirim Pesan"}
-              <SendHorizontal />
-            </Button>
-          </form>
-          <div className="flex flex-col justify-between rounded-xl bg-linear-to-br from-gray-900 to-black p-8 lg:p-12">
-            <div>
-              <h3 className="mb-4 text-2xl font-bold text-white">
-                {lang == "en" ? "Contact Information" : "Informasi Kontak"}
-              </h3>
-              <p className="mb-12 max-w-lg text-gray-300">
-                {lang == "en"
-                  ? "Fill up the form and our Team will get back to you within 24 hours."
-                  : "Isi formulir ini dan tim kami akan menghubungi Anda dalam waktu 24 jam."}
-              </p>
-              <div className="space-y-6">
-                {DATA.map(({ icon: Icon, info }, key) => (
-                  <div
-                    key={key}
-                    className="flex flex-col items-center lg:items-start xl:flex-row gap-4"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
-                      <Icon className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="text-gray-200 text-sm lg:text-lg">
-                      {info}
-                    </span>
-                  </div>
-                ))}
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-base">
+                  {lang == "en" ? "Message" : "Pesan"}
+                </Label>
+                <Textarea
+                  id="message"
+                  placeholder="Something about your request."
+                  rows={5}
+                  cols={40}
+                  className="resize-none"
+                />
               </div>
-            </div>
-            <div className="flex flex-col gap-3 items-center lg:items-start mt-10">
-              <p className="text-xl font-bold text-primary underline">
-                {lang == "en" ? "Connect with me" : "Terhubung dengan saya"}
-              </p>
-              <div className="flex gap-3">
-                {sosmeds.map((sosmed, index) => (
-                  <Tooltip key={index}>
-                    <TooltipTrigger
-                      className="w-10 p-1 rounded-md hover:-translate-y-1 cursor-pointer  transition-all duration-300"
-                      asChild
+              <Button
+                className="w-full sm:w-auto sm:min-w-[150px] flex gap-1"
+                size="lg"
+              >
+                {lang == "en" ? "Send Message" : "Kirim Pesan"}
+                <SendHorizontal />
+              </Button>
+            </form>
+            <div className="flex flex-col justify-between rounded-xl bg-linear-to-br from-gray-900 to-black p-8 lg:p-12">
+              <div>
+                <h3 className="mb-4 text-2xl font-bold text-white">
+                  {lang == "en" ? "Contact Information" : "Informasi Kontak"}
+                </h3>
+                <p className="mb-12 max-w-lg text-gray-300">
+                  {lang == "en"
+                    ? "Fill up the form and our Team will get back to you within 24 hours."
+                    : "Isi formulir ini dan tim kami akan menghubungi Anda dalam waktu 24 jam."}
+                </p>
+                <div className="space-y-6">
+                  {DATA.map(({ icon: Icon, info }, key) => (
+                    <div
+                      key={key}
+                      className="flex flex-col items-center lg:items-start xl:flex-row gap-4"
                     >
-                      <a href={sosmed.link} target="_blank">
-                        <img src={sosmed.img} alt={sosmed.alt} />
-                      </a>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="px-2 py-1 text-xs">
-                      <p>{sosmed.alt}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
+                        <Icon className="h-5 w-5 text-white" />
+                      </div>
+                      <span className="text-gray-200 text-sm lg:text-lg">
+                        {info}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col gap-3 items-center lg:items-start mt-10">
+                <p className="text-xl font-bold text-primary underline">
+                  {lang == "en" ? "Connect with me" : "Terhubung dengan saya"}
+                </p>
+                <div className="flex gap-3">
+                  {sosmeds.map((sosmed, index) => (
+                    <Tooltip key={index}>
+                      <TooltipTrigger
+                        className="w-10 p-1 rounded-md hover:-translate-y-1 cursor-pointer  transition-all duration-300"
+                        asChild
+                      >
+                        <a href={sosmed.link} target="_blank">
+                          <img src={sosmed.img} alt={sosmed.alt} />
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent
+                        side="bottom"
+                        className="px-2 py-1 text-xs"
+                      >
+                        <p>{sosmed.alt}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        </motion.div>
       </div>
     </section>
   );

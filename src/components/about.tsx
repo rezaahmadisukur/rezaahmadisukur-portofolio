@@ -3,7 +3,7 @@ import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { Badge } from "./ui/badge";
 import { PixelImage } from "./ui/pixel-image";
 import { useContext, useRef } from "react";
-import { useInView } from "motion/react";
+import { useInView, motion } from "motion/react";
 import { Context } from "@/contexts/context";
 
 const About = () => {
@@ -14,8 +14,18 @@ const About = () => {
   return (
     <section className="py-20">
       <div className="container">
-        <div className="grid items-center xl:grid-cols-3 gap-15 xl:gap-50">
-          <div className="xl:col-span-1">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ staggerChildren: 0.2, delayChildren: 0.1 }}
+          className="grid items-center xl:grid-cols-3 gap-15 xl:gap-50"
+        >
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="xl:col-span-1"
+          >
             <div className="flex flex-col items-center text-center xl:items-start xl:text-left">
               <Badge variant={"outline"}>
                 <AnimatedGradientText className="flex">
@@ -34,9 +44,14 @@ const About = () => {
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
           {/* Content About Me */}
-          <div className="xl:col-span-2">
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={isInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="xl:col-span-2"
+          >
             <div className="flex flex-col gap-10 xl:items-start items-center">
               <div className="text-3xl lg:text-4xl xl:text-5xl font-bold">
                 <h1 className="flex flex-col gap-3 w-full xl:items-start items-center">
@@ -119,8 +134,8 @@ const About = () => {
                 </div>
               )}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
