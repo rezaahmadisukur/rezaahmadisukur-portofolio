@@ -1,13 +1,12 @@
-import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BorderBeam } from "./ui/border-beam";
 import { TypingAnimation } from "./ui/typing-animation";
-import { AnimatedGradientText } from "./ui/animated-gradient-text";
 import { ShinyButton } from "./ui/shiny-button";
 import { useContext } from "react";
 import { Context } from "@/contexts/context";
+import { AnimatedGradientTextDemo } from "./examples/gradient-text";
+import { GradientText } from "./animate-ui/primitives/texts/gradient";
 
 interface Hero1Props {
   badge?: string;
@@ -34,7 +33,7 @@ interface Hero1Props {
 
 const Hero1 = ({
   badge = "✨ My Portofolio",
-  heading = "Portofolio",
+  heading = "Junior",
   description = {
     en: "A passionate developer with expertise in React, Tailwind CSS, and Javascript technologies . Currently pursuing a Master's in Information System at Bina Sarana Informatika University.",
     id: "Seorang pengembang yang bersemangat dengan keahlian dalam teknologi React, Tailwind CSS, dan JavaScript. Saat ini sedang menempuh program Sarjana Sistem Informasi di Universitas Bina Sarana Informatika."
@@ -42,7 +41,7 @@ const Hero1 = ({
   buttons = {
     primary: {
       text: "Download CV",
-      url: ""
+      url: "/assets/resume/resume.pdf"
     },
     secondary: {
       text: "Hire Me",
@@ -50,7 +49,7 @@ const Hero1 = ({
     }
   },
   image = {
-    src: "/public/assets/images/chibi.webp",
+    src: "/assets/images/chibi.webp",
     alt: "Chibi Profile"
   }
 }: Hero1Props) => {
@@ -62,35 +61,34 @@ const Hero1 = ({
           <div className="xl:col-span-2">
             <div className="flex flex-col items-center text-center xl:items-start xl:text-left">
               {badge && (
-                <Badge variant={"outline"}>
-                  <AnimatedGradientText className="flex">
-                    {badge}
-                    <ArrowUpRight className="ml-2 size-4 text-accent-foreground" />
-                  </AnimatedGradientText>
-                </Badge>
+                <AnimatedGradientTextDemo>{badge}</AnimatedGradientTextDemo>
               )}
-              <div className="my-6 text-4xl font-bold xl:text-6xl text-center xl:text-start">
-                <h1 className="">
-                  <span className="uppercase">{heading}</span>
+              <div className="mt-5 text-5xl font-bold xl:text-6xl text-center xl:text-start">
+                <h1 className="uppercase">
+                  <GradientText text={heading} />
                 </h1>
                 <p>
                   <TypingAnimation
-                    words={["Junior Programmer", "Junior Web Developer"]}
+                    words={[
+                      "Frontend Developer",
+                      "Backend Developer",
+                      "Web Developer"
+                    ]}
                     typeSpeed={100}
                     deleteSpeed={150}
                     pauseDelay={2000}
                     loop
-                    className="text-primary xl:text-4xl"
+                    className="text-3xl md:text-4xl dark:text-accent-foreground"
                   />
                 </p>
               </div>
-              <p className="text-muted-foreground mb-8 max-w-xl xl:text-xl">
+              <p className="text-muted-foreground mb-8 max-w-xl xl:text-md mt-5 xl:mt-0">
                 {lang == "en" ? description.en : description.id}
               </p>
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row xl:justify-start">
                 {buttons.primary && (
                   <Button asChild className="w-full sm:w-auto">
-                    <a href={buttons.primary.url}>
+                    <a href={buttons.primary.url} download>
                       {lang == "en" ? buttons.primary.text : "Unduh CV"}
                       <Download />
                     </a>
@@ -98,8 +96,8 @@ const Hero1 = ({
                 )}
                 {buttons.secondary && (
                   <a href={buttons.secondary.url}>
-                    <ShinyButton>
-                      <span className="flex items-center gap-1 capitalize">
+                    <ShinyButton className="w-full">
+                      <span className="flex items-center justify-center gap-1 capitalize w-full">
                         {lang == "en" ? buttons.secondary.text : "Rekrut Saya"}
                         <ArrowRight className="size-4" />
                       </span>

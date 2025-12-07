@@ -1,10 +1,9 @@
-import { ArrowUpRight } from "lucide-react";
-import { AnimatedGradientText } from "./ui/animated-gradient-text";
-import { Badge } from "./ui/badge";
 import { PixelImage } from "./ui/pixel-image";
 import { useContext, useRef } from "react";
 import { useInView, motion } from "motion/react";
 import { Context } from "@/contexts/context";
+import { GradientText } from "./animate-ui/primitives/texts/gradient";
+import { AnimatedGradientTextDemo } from "./examples/gradient-text";
 
 const About = () => {
   const ref = useRef(null);
@@ -20,23 +19,13 @@ const About = () => {
           transition={{ staggerChildren: 0.2, delayChildren: 0.1 }}
           className="grid items-center xl:grid-cols-3 gap-15 xl:gap-50"
         >
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="xl:col-span-1"
-          >
+          <div className="xl:col-span-1">
             <div className="flex flex-col items-center text-center xl:items-start xl:text-left">
-              <Badge variant={"outline"}>
-                <AnimatedGradientText className="flex">
-                  👾 About
-                  <ArrowUpRight className="ml-2 size-4 text-accent-foreground" />
-                </AnimatedGradientText>
-              </Badge>
+              <AnimatedGradientTextDemo>About</AnimatedGradientTextDemo>
               <div ref={ref} className="relative mt-10">
                 {isInView && (
                   <PixelImage
-                    src="/public/assets/images/profile.jpg"
+                    src="/assets/images/profile.jpg"
                     customGrid={{ rows: 6, cols: 6 }}
                     grayscaleAnimation
                     maxAnimationDelay={3000}
@@ -44,7 +33,7 @@ const About = () => {
                 )}
               </div>
             </div>
-          </motion.div>
+          </div>
           {/* Content About Me */}
           <motion.div
             initial={{ x: 100, opacity: 0 }}
@@ -55,19 +44,17 @@ const About = () => {
             <div className="flex flex-col gap-10 xl:items-start items-center">
               <div className="text-3xl lg:text-4xl xl:text-5xl font-bold">
                 <h1 className="flex flex-col gap-3 w-full xl:items-start items-center">
-                  <span className="flex gap-3">
+                  <span className="flex gap-3 w-fit items-center">
                     {lang == "en" ? "Hi there !" : "Halo !"}
                     <img
-                      src="/public/assets/gifs/wave.gif"
+                      src="/assets/gifs/wave.gif"
                       alt="..."
-                      width={50}
+                      className="xl:w-[50px] w-[30px]"
                     />
                   </span>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 text-2xl lg:text-4xl xl:text-5xl">
                     {lang == "en" ? "I'm" : "Saya"}
-                    <span className="text-primary underline">
-                      Reza Ahmadi Sukur
-                    </span>
+                    <GradientText text="Reza Ahmadi Sukur" />
                   </div>
                 </h1>
               </div>

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  ArrowUpRight,
-  Mail,
-  MapPin,
-  Phone,
-  SendHorizontal
-} from "lucide-react";
+import { Mail, MapPin, Phone, SendHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -14,30 +8,30 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
-import { Badge } from "@/components/ui/badge";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { useContext, useRef } from "react";
 import { Context } from "@/contexts/context";
 import { motion, useInView } from "motion/react";
+import { GradientText } from "@/components/animate-ui/primitives/texts/gradient";
+import { AnimatedGradientTextDemo } from "@/components/examples/gradient-text";
 
 const sosmeds = [
   {
-    img: "/public/assets/icons/sosmed/facebook.svg",
+    img: "/assets/icons/sosmed/facebook.svg",
     alt: "Facebook",
     link: "https://www.facebook.com/reza.ahmadi.sukur.39"
   },
   {
-    img: "/public/assets/icons/sosmed/github.svg",
+    img: "/assets/icons/sosmed/github.svg",
     alt: "Github",
     link: "https://github.com/rezaahmadisukur"
   },
   {
-    img: "/public/assets/icons/sosmed/instagram.svg",
+    img: "/assets/icons/sosmed/instagram.svg",
     alt: "Instagram",
     link: "https://www.instagram.com/rezaahmadisukur"
   },
   {
-    img: "/public/assets/icons/sosmed/linkedin.svg",
+    img: "/assets/icons/sosmed/linkedin.svg",
     alt: "Linked In",
     link: "https://www.linkedin.com/in/reza-ahmadi-sukur-361a7a311"
   }
@@ -68,16 +62,13 @@ export default function ContactSections03() {
   return (
     <section className="py-20">
       <div className="container mx-auto">
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-10">
-          <Badge variant={"outline"}>
-            <AnimatedGradientText className="flex">
-              👽 Contact
-              <ArrowUpRight className="ml-2 size-4 text-accent-foreground" />
-            </AnimatedGradientText>
-          </Badge>
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-5">
+          <AnimatedGradientTextDemo>Contact</AnimatedGradientTextDemo>
           <div className="flex flex-col gap-1">
             <h1 className="text-4xl lg:text-5xl font-bold">
-              {lang == "en" ? "Contact Me" : "Hubungi Saya"}
+              <GradientText
+                text={lang == "en" ? "Contact Me" : "Hubungi Saya"}
+              />
             </h1>
             <p>
               {lang == "en"
@@ -99,13 +90,21 @@ export default function ContactSections03() {
                   <Label htmlFor="first-name" className="text-base">
                     {lang == "en" ? "First Name" : "Nama Depan"}
                   </Label>
-                  <Input id="first-name" placeholder="John" className="h-11" />
+                  <Input
+                    id="first-name"
+                    placeholder="John"
+                    className="h-11 placeholder:text-sm lg:placeholder:text-lg"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="last-name" className="text-base">
                     {lang == "en" ? "Last Name" : "Nama Belakang"}
                   </Label>
-                  <Input id="last-name" placeholder="Doe" className="h-11" />
+                  <Input
+                    id="last-name"
+                    placeholder="Doe"
+                    className="h-11 placeholder:text-sm lg:placeholder:text-lg"
+                  />
                 </div>
               </div>
               <div className="space-y-2">
@@ -116,7 +115,7 @@ export default function ContactSections03() {
                   id="email"
                   type="email"
                   placeholder="someone@example.com"
-                  className="h-11"
+                  className="h-11 placeholder:text-sm lg:placeholder:text-lg"
                 />
               </div>
               <div className="space-y-2">
@@ -128,23 +127,20 @@ export default function ContactSections03() {
                   placeholder="Something about your request."
                   rows={5}
                   cols={40}
-                  className="resize-none"
+                  className="resize-none placeholder:text-sm lg:placeholder:text-lg"
                 />
               </div>
-              <Button
-                className="w-full sm:w-auto sm:min-w-[150px] flex gap-1"
-                size="lg"
-              >
+              <Button className="w-full flex gap-1" size="lg">
                 {lang == "en" ? "Send Message" : "Kirim Pesan"}
                 <SendHorizontal />
               </Button>
             </form>
             <div className="flex flex-col justify-between rounded-xl bg-linear-to-br from-gray-900 to-black p-8 lg:p-12">
               <div>
-                <h3 className="mb-4 text-2xl font-bold text-white">
+                <h3 className="mb-4 text-lg lg:text-2xl font-bold text-white text-center lg:text-start">
                   {lang == "en" ? "Contact Information" : "Informasi Kontak"}
                 </h3>
-                <p className="mb-12 max-w-lg text-gray-300">
+                <p className="mb-12 max-w-full text-gray-300 text-sm text-center lg:text-lg lg:text-start">
                   {lang == "en"
                     ? "Fill up the form and our Team will get back to you within 24 hours."
                     : "Isi formulir ini dan tim kami akan menghubungi Anda dalam waktu 24 jam."}
@@ -153,7 +149,7 @@ export default function ContactSections03() {
                   {DATA.map(({ icon: Icon, info }, key) => (
                     <div
                       key={key}
-                      className="flex flex-col items-center lg:items-start xl:flex-row gap-4"
+                      className="flex flex-col items-center lg:items-start lg:flex-row gap-4"
                     >
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
                         <Icon className="h-5 w-5 text-white" />

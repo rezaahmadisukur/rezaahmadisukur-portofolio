@@ -25,10 +25,7 @@ export function CardCertificate() {
   }, []);
 
   return (
-    <Carousel
-      plugins={[plugin.current]}
-      className="mt-10 border border-transparent"
-    >
+    <Carousel plugins={[plugin.current]} className="mt-10 w-full">
       <CarouselContent>
         {certificates.length > 0 &&
           certificates.map(
@@ -37,17 +34,17 @@ export function CardCertificate() {
               index
             ) => (
               <CarouselItem key={index}>
-                <div className="p-1 w-full max-w-3xl mx-auto">
+                <div className="p-1 w-full max-w-3xl mx-auto ">
                   <img
                     src={certificate.img}
                     alt={certificate.title}
-                    className=" transition-all duration-300 hover:shadow-md hover:shadow-foreground border rounded-xl"
+                    className=" transition-all duration-300 hover:shadow-md hover:shadow-foreground rounded-xl"
                   />
                   <div className="flex justify-center items-center flex-col mt-5 font-bold">
-                    <p className="text-foreground text-lg">
+                    <p className="text-foreground text-sm lg:text-lg text-center lg:text-start">
                       {certificate.title}
                     </p>
-                    <p className="text-neutral-500 font-medium">
+                    <p className="text-neutral-500 font-medium text-xs mt-2 lg:text-lg">
                       {certificate.date}
                     </p>
                   </div>
@@ -56,8 +53,12 @@ export function CardCertificate() {
             )
           )}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      {window.innerWidth >= 768 && (
+        <>
+          <CarouselPrevious />
+          <CarouselNext />
+        </>
+      )}
     </Carousel>
   );
 }

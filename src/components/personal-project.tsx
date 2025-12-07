@@ -1,11 +1,10 @@
-import { ArrowUpRight } from "lucide-react";
-import { AnimatedGradientText } from "./ui/animated-gradient-text";
-import { Badge } from "./ui/badge";
 import CardProject from "./examples/cards-project";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { PaginationDemo } from "./examples/pagination";
 import { Context } from "@/contexts/context";
-import { motion, useInView } from "motion/react";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import { GradientText } from "./animate-ui/primitives/texts/gradient";
+import { AnimatedGradientTextDemo } from "./examples/gradient-text";
 
 interface ProjectType {
   title?: string;
@@ -25,6 +24,7 @@ const PersonalProject = () => {
   const { lang } = useContext(Context);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const currentItems = projects.slice(
     currentPage * itemPerPage,
@@ -61,30 +61,13 @@ const PersonalProject = () => {
   return (
     <section className="py-20">
       <div className="container">
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-10">
-          <Badge variant={"outline"}>
-            <AnimatedGradientText className="flex">
-              👽 Projects
-              <ArrowUpRight className="ml-2 size-4 text-accent-foreground" />
-            </AnimatedGradientText>
-          </Badge>
+        <div className="flex flex-col items-center text-center lg:items-start gap-5 lg:text-start">
+          <AnimatedGradientTextDemo>Projects</AnimatedGradientTextDemo>
           <div className="flex flex-col gap-1">
-            <h1 className="text-4xl lg:text-5xl font-bold flex items-center gap-3">
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="200"
-                  height="200"
-                  viewBox="0 0 1391 1000"
-                  className="size-15"
-                >
-                  <path
-                    fill="var(--foreground)"
-                    d="M1313 218H78q9-48 27-67q16-17 31-17h4q4 1 8 1q12 0 26-4q18-6 25-29l24-72Q300 1 431 1q89 0 164 29l25 72q24 23 32.5 26t43.5 3h485q84 0 110 22q12 11 22 65zm78 164v10l-68 523q-5 35-33.5 60.5T1225 1001H167q-36 0-65.5-25.5T68 915L1 392q-1-3-1-10q0-33 22.5-54.5T78 306h1235q33 0 55.5 21.5T1391 382z"
-                  />
-                </svg>
-              </span>
-              {lang == "en" ? "Personal Projects" : "proyek pribadi"}
+            <h1 className="text-4xl lg:text-5xl font-bold flex items-center gap-3 justify-center">
+              <GradientText
+                text={lang == "en" ? "Personal Projects" : "proyek pribadi"}
+              />
             </h1>
             <p>
               {lang == "en"
@@ -102,11 +85,41 @@ const PersonalProject = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mt-10 grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-5 "
         >
-          {/* Card */}
           {currentItems.length > 0 &&
             currentItems.map((project, index) => (
-              <div key={index}>
-                <CardProject project={project} />
+              <div
+                key={index}
+                className="relative group  block p-2 h-full w-full"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <AnimatePresence>
+                  {hoveredIndex === index && (
+                    <motion.span
+                      className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/80 block rounded-3xl"
+                      layoutId="hoverBackground"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: 1,
+                        transition: {
+                          duration: 0.5,
+                          ease: "easeInOut"
+                        }
+                      }}
+                      exit={{
+                        opacity: 0,
+                        transition: {
+                          duration: 0.5,
+                          ease: "easeInOut"
+                        }
+                      }}
+                    />
+                  )}
+                </AnimatePresence>
+                <CardProject
+                  project={project}
+                  className="rounded-2xl h-full border border-transparent dark:border-white/20 group-hover:border-slate-700 relative z-20"
+                />
               </div>
             ))}
         </motion.div>

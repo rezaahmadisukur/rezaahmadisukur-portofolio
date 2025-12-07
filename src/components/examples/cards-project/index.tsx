@@ -11,6 +11,9 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { useContext } from "react";
 import { Context } from "@/contexts/context";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import { ShineBorder } from "@/components/ui/shine-border";
+import { cn } from "@/lib/utils";
 
 export const title = "Image Card";
 
@@ -26,15 +29,24 @@ interface ProjectType {
   demo?: string;
 }
 
-const CardProject = ({ project }: { project: ProjectType }) => {
+const CardProject = ({
+  project,
+  className
+}: {
+  project: ProjectType;
+  className?: string;
+}) => {
   const { lang } = useContext(Context);
   return (
-    <Card className="w-full max-w-md overflow-hidden hover:ring-2 hover:ring-foreground transition-all duration-300">
+    <Card
+      className={cn("w-full max-w-md overflow-hidden relative z-50", className)}
+    >
+      <ShineBorder shineColor={["#3b82f6", "#a855f7", "#ec4899"]} />
       <CardHeader className="p-0 h-[166px]">
         <img
           className="h-[166px] w-full object-cover"
           alt={project.title}
-          src={project.image || "/public/assets/icons/others/not-found.jpg"}
+          src={project.image || "/assets/icons/others/not-found.jpg"}
         />
       </CardHeader>
       <CardContent className="flex flex-col items-center text-center">
@@ -52,12 +64,15 @@ const CardProject = ({ project }: { project: ProjectType }) => {
       </div>
       <CardFooter className="flex gap-5">
         <div className="w-full">
-          <Button className="w-full cursor-pointer" variant={"outline"}>
-            <a href={project.github} target="_blank">
+          <a href={project.github} target="_blank">
+            <RainbowButton
+              className="w-full cursor-pointer"
+              variant={"outline"}
+            >
               Github
-            </a>
-            <Github />
-          </Button>
+              <Github />
+            </RainbowButton>
+          </a>
         </div>
         <div className="w-full">
           <Button className="w-full cursor-pointer">

@@ -11,6 +11,7 @@ import PersonalProject from "./components/personal-project";
 import { useEffect, useState } from "react";
 import SplashScreen from "./components/splash-screen";
 import LazySection from "./components/lazy-section";
+import { AnimatePresence } from "motion/react";
 
 const App = () => {
   const [isLoadingScreen, setIsLoadingScreen] = useState<boolean>(true);
@@ -23,42 +24,44 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (isLoadingScreen) {
-    return <SplashScreen />;
-  }
-
   return (
-    <div className="select-none">
-      <Navbar06 />
-      <header className="w-10/12 mx-auto" id="home">
-        <Hero1 />
-      </header>
+    <>
+      <AnimatePresence>{isLoadingScreen && <SplashScreen />}</AnimatePresence>
 
-      <main className="w-10/12 mx-auto">
-        <LazySection id="about">
-          <About />
-        </LazySection>
-        <LazySection id="techs">
-          <TechStack />
-        </LazySection>
-        <LazySection id="projects">
-          <PersonalProject />
-        </LazySection>
-        <LazySection id="certificates">
-          <Certificates />
-        </LazySection>
-        <LazySection id="contact">
-          <ContactSections03 />
-        </LazySection>
-      </main>
+      {!isLoadingScreen && (
+        <div className="select-none">
+          <Navbar06 />
+          <header className="w-10/12 mx-auto" id="home">
+            <Hero1 />
+          </header>
 
-      <footer>
-        <Footer />
-      </footer>
+          <main className="w-10/12 mx-auto">
+            <LazySection id="about">
+              <About />
+            </LazySection>
+            <LazySection id="techs">
+              <TechStack />
+            </LazySection>
+            <LazySection id="projects">
+              <PersonalProject />
+            </LazySection>
+            <LazySection id="certificates">
+              <Certificates />
+            </LazySection>
+            <LazySection id="contact">
+              <ContactSections03 />
+            </LazySection>
+          </main>
 
-      <SplashCursor />
-      <BackgroundBeams />
-    </div>
+          <footer>
+            <Footer />
+          </footer>
+
+          <SplashCursor />
+          <BackgroundBeams />
+        </div>
+      )}
+    </>
   );
 };
 

@@ -240,8 +240,8 @@ export interface Navbar06Props extends React.HTMLAttributes<HTMLElement> {
 
 // Default language options
 const defaultLanguages: Navbar06Language[] = [
-  { value: "en", label: "En", flag: "/public/assets/icons/flags/en.svg" },
-  { value: "id", label: "Id", flag: "/public/assets/icons/flags/id.svg" }
+  { value: "en", label: "En", flag: "/assets/icons/flags/en.svg" },
+  { value: "id", label: "Id", flag: "/assets/icons/flags/id.svg" }
 ];
 
 export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
@@ -254,7 +254,7 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
     const selectId = useId();
     const { lang, setLang } = React.useContext(Context);
     const [navLinks, setNavLinks] = useState<Navbar06NavItem[]>([
-      { href: "#home", label: "Home", icon: HomeIcon, active: true },
+      { href: "#home", label: "Home", icon: HomeIcon, active: false },
       { href: "#about", label: "About Me", icon: UsersIcon, active: false },
       { href: "#techs", label: "Tech Stack", icon: LayersIcon, active: false },
       {
@@ -279,10 +279,10 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
     };
 
     useEffect(() => {
-      const checkWidth = () => {
+      const checkWidth = (): void => {
         if (containerRef.current) {
           const width = containerRef.current.offsetWidth;
-          setIsMobile(width < 768); // 768px is md breakpoint
+          setIsMobile(width < 992); // 768px is md breakpoint
         }
       };
 
@@ -344,21 +344,6 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
       };
     }, []);
 
-    // Tambahkan handler untuk scroll smooth ke section saat nav diklik:
-    // const handleNavItemClick = (href: string) => {
-    //   const sectionId = href.replace("#", "");
-    //   const section = document.getElementById(sectionId);
-
-    //   if (section) {
-    //     section.scrollIntoView({ behavior: "smooth" });
-    //     handleSetActive(href);
-    //   }
-
-    //   if (onNavItemClick) {
-    //     onNavItemClick(href);
-    //   }
-    // };
-
     return (
       <header
         ref={combinedRef}
@@ -390,9 +375,11 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
                         const Icon = link.icon;
                         return (
                           <NavigationMenuItem key={index} className="w-full">
-                            <button
+                            <a
+                              href={link.href}
                               onClick={(e) => {
                                 e.preventDefault();
+                                handleSetActive(link.href as string);
                                 document
                                   .querySelector(link.href as string)
                                   ?.scrollIntoView({ behavior: "smooth" });
@@ -409,7 +396,7 @@ export const Navbar06 = React.forwardRef<HTMLElement, Navbar06Props>(
                                 aria-hidden={true}
                               />
                               <span>{link.label}</span>
-                            </button>
+                            </a>
                           </NavigationMenuItem>
                         );
                       })}

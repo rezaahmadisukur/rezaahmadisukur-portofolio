@@ -65,95 +65,95 @@ export default TabsLayout;
 const Langs = [
   {
     label: "HTML",
-    icon: "/public/assets/icons/tech-stack/languages//html.svg"
+    icon: "/assets/icons/tech-stack/languages//html.svg"
   },
   {
     label: "CSS",
-    icon: "/public/assets/icons/tech-stack/languages/css.svg"
+    icon: "/assets/icons/tech-stack/languages/css.svg"
   },
   {
     label: "JavaScript",
-    icon: "/public/assets/icons/tech-stack/languages/js.svg"
+    icon: "/assets/icons/tech-stack/languages/js.svg"
   },
   {
     label: "TypeScript",
-    icon: "/public/assets/icons/tech-stack/languages/ts.svg"
+    icon: "/assets/icons/tech-stack/languages/ts.svg"
   },
   {
     label: "Git",
-    icon: "/public/assets/icons/tech-stack/languages/git.svg"
+    icon: "/assets/icons/tech-stack/languages/git.svg"
   },
   {
     label: "Vercel",
-    icon: "/public/assets/icons/tech-stack/languages/vercel.svg"
+    icon: "/assets/icons/tech-stack/languages/vercel.svg"
   },
   {
     label: "API Dogs",
-    icon: "/public/assets/icons/tech-stack/languages/apidog.svg"
+    icon: "/assets/icons/tech-stack/languages/apidog.svg"
   },
   {
     label: "Visual Studio Code",
-    icon: "/public/assets/icons/tech-stack/languages/vscode.svg"
+    icon: "/assets/icons/tech-stack/languages/vscode.svg"
   },
   {
     label: "Windows",
-    icon: "/public/assets/icons/tech-stack/languages/windows.svg"
+    icon: "/assets/icons/tech-stack/languages/windows.svg"
   }
 ];
 
 const backends = [
   {
     label: "Node JS",
-    icon: "/public/assets/icons/tech-stack/backends/nodejs.svg"
+    icon: "/assets/icons/tech-stack/backends/nodejs.svg"
   },
   {
     label: "Express JS",
-    icon: "/public/assets/icons/tech-stack/backends/expressjs.svg"
+    icon: "/assets/icons/tech-stack/backends/expressjs.svg"
   },
   {
     label: "PHP",
-    icon: "/public/assets/icons/tech-stack/backends/php.svg"
+    icon: "/assets/icons/tech-stack/backends/php.svg"
   }
 ];
 
 const frameworks = [
   {
     label: "React JS",
-    icon: "/public/assets/icons/tech-stack/frameworks/reactjs.svg"
+    icon: "/assets/icons/tech-stack/frameworks/reactjs.svg"
   },
   {
     label: "Redux",
-    icon: "/public/assets/icons/tech-stack/frameworks/redux.svg"
+    icon: "/assets/icons/tech-stack/frameworks/redux.svg"
   },
   {
     label: "Vite",
-    icon: "/public/assets/icons/tech-stack/frameworks/vite.svg"
+    icon: "/assets/icons/tech-stack/frameworks/vite.svg"
   },
   {
     label: "Laravel",
-    icon: "/public/assets/icons/tech-stack/frameworks/laravel.svg"
+    icon: "/assets/icons/tech-stack/frameworks/laravel.svg"
   },
   {
     label: "Livewire",
-    icon: "/public/assets/icons/tech-stack/frameworks/livewire.svg"
+    icon: "/assets/icons/tech-stack/frameworks/livewire.svg"
   },
   {
     label: "Bootstrap",
-    icon: "/public/assets/icons/tech-stack/frameworks/bootstrap.svg"
+    icon: "/assets/icons/tech-stack/frameworks/bootstrap.svg"
   },
   {
     label: "Tailwind CSS",
-    icon: "/public/assets/icons/tech-stack/frameworks/tailwind.svg"
+    icon: "/assets/icons/tech-stack/frameworks/tailwind.svg"
   }
 ];
 
 const databases = [
   {
     label: "MySQL",
-    icon: "/public/assets/icons/tech-stack/databases/mysql.svg"
+    icon: "/assets/icons/tech-stack/databases/mysql.svg"
   },
   {
     label: "Mongodb",
-    icon: "/public/assets/icons/tech-stack/databases/mongodb.svg"
+    icon: "/assets/icons/tech-stack/databases/mongodb.svg"
   }
 ];

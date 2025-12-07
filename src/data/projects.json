@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Nimbly",
-      "image": "/public/assets/images/projects/project-1.png",
+      "image": "/assets/images/projects/project-1.png",
       "desc": {
         "en": "Nimbly is a mini e-commerce website that i built using React and TypeScript with a filtering system",
         "id": "Nimbly adalah situs web mini e-commerce yang saya bangun menggunakan React dan TypeScript dengan sistem penyaringan."
@@ -14,53 +14,53 @@
     },
     {
       "id": 2,
-      "title": "Nimbly 2",
+      "title": "Not-Found",
       "image": "",
       "desc": {
         "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
         "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
       },
-      "category": ["React", "Typescript", "Redux", "Localstorage"]
+      "category": ["Empty", "Empty", "Empty", "Empty"]
     },
     {
       "id": 3,
-      "title": "Nimbly 3",
+      "title": "Not-Found",
       "image": "",
       "desc": {
         "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
         "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
       },
-      "category": ["React", "Typescript", "Redux", "Localstorage"]
+      "category": ["Empty", "Empty", "Empty", "Empty"]
     },
     {
       "id": 4,
-      "title": "Nimbly 4",
+      "title": "Not-Found",
       "image": "",
       "desc": {
         "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
         "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
       },
-      "category": ["React", "Typescript", "Redux", "Localstorage"]
+      "category": ["Empty", "Empty", "Empty", "Empty"]
     },
     {
       "id": 5,
-      "title": "Nimbly 5",
+      "title": "Not-Found",
       "image": "",
       "desc": {
         "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
         "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
       },
-      "category": ["React", "Typescript", "Redux", "Localstorage"]
+      "category": ["Empty", "Empty", "Empty", "Empty"]
     },
     {
       "id": 6,
-      "title": "Nimbly 6",
+      "title": "Not-Found",
       "image": "",
       "desc": {
         "en": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
         "id": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
       },
-      "category": ["React", "Typescript", "Redux", "Localstorage"]
+      "category": ["Empty", "Empty", "Empty", "Empty"]
     }
   ]
 }
