@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, MapPin, Phone, SendHorizontal } from "lucide-react";
+import { Mail, MapPin, Phone, SendHorizontal, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,11 +8,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Context } from "@/contexts/context";
 import { motion, useInView } from "motion/react";
 import { GradientText } from "@/components/animate-ui/primitives/texts/gradient";
 import { AnimatedGradientTextDemo } from "@/components/examples/gradient-text";
+import { useForm, ValidationError } from "@formspree/react";
+import { Spinner } from "@/components/ui/spinner";
+import { toast } from "sonner";
 
 const sosmeds = [
   {
@@ -58,6 +61,22 @@ export default function ContactSections03() {
   const { lang } = useContext(Context);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const [state, handleSubmit] = useForm("mnnebjvk");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (state.succeeded) {
+      toast("Successfully Send Message", {
+        position: "top-center",
+        duration: 5000,
+        action: {
+          label: <X />,
+          onClick: () => {}
+        }
+      });
+      formRef.current?.reset();
+    }
+  }, [state.succeeded]);
 
   return (
     <section className="py-20">
@@ -84,26 +103,40 @@ export default function ContactSections03() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <Card className="grid grid-cols-1 items-center gap-10 rounded-2xl p-8 shadow-xl lg:grid-cols-2 lg:p-10 mt-10">
-            <form action="#" className="space-y-6">
+            <form className="space-y-6" ref={formRef} onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="first-name" className="text-base">
+                  <Label htmlFor="firstName" className="text-base">
                     {lang == "en" ? "First Name" : "Nama Depan"}
                   </Label>
                   <Input
-                    id="first-name"
+                    type="text"
+                    id="firstName"
+                    name="firstName"
                     placeholder="John"
                     className="h-11 placeholder:text-sm lg:placeholder:text-lg"
                   />
+                  <ValidationError
+                    prefix="First Name"
+                    field="firstName"
+                    errors={state.errors}
+                  />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="last-name" className="text-base">
+                  <Label htmlFor="lastName" className="text-base">
                     {lang == "en" ? "Last Name" : "Nama Belakang"}
                   </Label>
                   <Input
-                    id="last-name"
+                    type="text"
+                    id="lastName"
+                    name="lastName"
                     placeholder="Doe"
                     className="h-11 placeholder:text-sm lg:placeholder:text-lg"
+                  />
+                  <ValidationError
+                    prefix="Last Name"
+                    field="lastName"
+                    errors={state.errors}
                   />
                 </div>
               </div>
@@ -114,8 +147,14 @@ export default function ContactSections03() {
                 <Input
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="someone@example.com"
                   className="h-11 placeholder:text-sm lg:placeholder:text-lg"
+                />
+                <ValidationError
+                  prefix="Email"
+                  field="email"
+                  errors={state.errors}
                 />
               </div>
               <div className="space-y-2">
@@ -123,14 +162,26 @@ export default function ContactSections03() {
                   {lang == "en" ? "Message" : "Pesan"}
                 </Label>
                 <Textarea
+                  name="message"
                   id="message"
                   placeholder="Something about your request."
                   rows={5}
                   cols={40}
                   className="resize-none placeholder:text-sm lg:placeholder:text-lg"
                 />
+                <ValidationError
+                  prefix="Message"
+                  field="message"
+                  errors={state.errors}
+                />
               </div>
-              <Button className="w-full flex gap-1" size="lg">
+              <Button
+                type="submit"
+                disabled={state.submitting}
+                className="w-full flex gap-1 cursor-pointer"
+                size="lg"
+              >
+                {state.submitting && <Spinner className="font-bold stroke-3" />}
                 {lang == "en" ? "Send Message" : "Kirim Pesan"}
                 <SendHorizontal />
               </Button>

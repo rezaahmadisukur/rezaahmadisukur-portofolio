@@ -26,9 +26,9 @@ const About = () => {
                 {isInView && (
                   <PixelImage
                     src="/assets/images/profile.jpg"
-                    customGrid={{ rows: 6, cols: 6 }}
+                    customGrid={{ rows: 10, cols: 10 }}
                     grayscaleAnimation
-                    maxAnimationDelay={3000}
+                    maxAnimationDelay={2000}
                   />
                 )}
               </div>
