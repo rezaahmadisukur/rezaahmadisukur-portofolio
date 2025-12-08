@@ -18,15 +18,16 @@ import { cn } from "@/lib/utils";
 export const title = "Image Card";
 
 interface ProjectType {
+  id: number;
   title?: string;
   desc?: {
-    en: string;
-    id: string;
+    en?: string;
+    id?: string;
   };
   image?: string;
-  category?: string[];
-  github?: string;
+  category: string[];
   demo?: string;
+  github?: string;
 }
 
 const CardProject = ({

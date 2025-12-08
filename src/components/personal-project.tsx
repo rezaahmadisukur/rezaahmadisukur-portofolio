@@ -1,5 +1,5 @@
 import CardProject from "./examples/cards-project";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { PaginationDemo } from "./examples/pagination";
 import { Context } from "@/contexts/context";
 import { AnimatePresence, motion, useInView } from "motion/react";
@@ -7,13 +7,16 @@ import { GradientText } from "./animate-ui/primitives/texts/gradient";
 import { AnimatedGradientTextDemo } from "./examples/gradient-text";
 
 interface ProjectType {
+  id: number;
   title?: string;
   desc?: {
-    en: string;
-    id: string;
+    en?: string;
+    id?: string;
   };
   image?: string;
   category: string[];
+  demo?: string;
+  github?: string;
 }
 
 const PersonalProject = () => {
@@ -43,20 +46,20 @@ const PersonalProject = () => {
     setCurrentPage(page);
   };
 
-  const getProjects = useCallback(async () => {
-    const response = await fetch("/data/projects.json").then((res) =>
-      res.json()
-    );
-    setProjects(response.data);
-  }, []);
+  // const getProjects = useCallback(async () => {
+  //   const response = await fetch("/data/projects.json").then((res) =>
+  //     res.json()
+  //   );
+  //   setProjects(response.data);
+  // }, []);
 
   useEffect(() => {
     const load = async () => {
-      getProjects();
+      return await setProjects(data);
     };
 
     load();
-  }, [getProjects]);
+  }, []);
 
   return (
     <section className="py-20">
@@ -86,7 +89,7 @@ const PersonalProject = () => {
           className="mt-10 grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-5 "
         >
           {currentItems.length > 0 &&
-            currentItems.map((project, index) => (
+            currentItems.map((project: ProjectType, index) => (
               <div
                 key={index}
                 className="relative group  block p-2 h-full w-full"
@@ -143,3 +146,68 @@ const PersonalProject = () => {
 };
 
 export default PersonalProject;
+
+const data = [
+  {
+    id: 1,
+    title: "Nimbly",
+    image: "/assets/images/projects/project-1.png",
+    desc: {
+      en: "Nimbly is a mini e-commerce website that i built using React and TypeScript with a filtering system",
+      id: "Nimbly adalah situs web mini e-commerce yang saya bangun menggunakan React dan TypeScript dengan sistem penyaringan."
+    },
+    category: ["React", "Typescript", "Redux", "Localstorage"],
+    demo: "https://nimbly-store.vercel.app",
+    github: "https://github.com/rezaahmadisukur/nimbly"
+  },
+  {
+    id: 2,
+    title: "Not-Found",
+    image: "",
+    desc: {
+      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+      id: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+    },
+    category: ["Empty", "Empty", "Empty", "Empty"]
+  },
+  {
+    id: 3,
+    title: "Not-Found",
+    image: "",
+    desc: {
+      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+      id: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+    },
+    category: ["Empty", "Empty", "Empty", "Empty"]
+  },
+  {
+    id: 4,
+    title: "Not-Found",
+    image: "",
+    desc: {
+      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+      id: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+    },
+    category: ["Empty", "Empty", "Empty", "Empty"]
+  },
+  {
+    id: 5,
+    title: "Not-Found",
+    image: "",
+    desc: {
+      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+      id: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+    },
+    category: ["Empty", "Empty", "Empty", "Empty"]
+  },
+  {
+    id: 6,
+    title: "Not-Found",
+    image: "",
+    desc: {
+      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
+      id: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+    },
+    category: ["Empty", "Empty", "Empty", "Empty"]
+  }
+];
