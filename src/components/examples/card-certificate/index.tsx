@@ -14,7 +14,7 @@ export function CardCertificate() {
   const plugin = React.useRef(Autoplay({ delay: 5000 }));
 
   const getCertificates = async () => {
-    const response = await fetch("/src/data/certificates.json").then((res) =>
+    const response = await fetch("/data/certificates.json").then((res) =>
       res.json()
     );
     setSertificates(response);

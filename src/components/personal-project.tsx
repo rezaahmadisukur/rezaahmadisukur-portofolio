@@ -44,7 +44,7 @@ const PersonalProject = () => {
   };
 
   const getProjects = useCallback(async () => {
-    const response = await fetch("/src/data/projects.json").then((res) =>
+    const response = await fetch("/data/projects.json").then((res) =>
       res.json()
     );
     setProjects(response.data);
