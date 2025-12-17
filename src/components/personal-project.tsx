@@ -46,13 +46,6 @@ const PersonalProject = () => {
     setCurrentPage(page);
   };
 
-  // const getProjects = useCallback(async () => {
-  //   const response = await fetch("/data/projects.json").then((res) =>
-  //     res.json()
-  //   );
-  //   setProjects(response.data);
-  // }, []);
-
   useEffect(() => {
     const load = async () => {
       return await setProjects(data);
@@ -162,13 +155,15 @@ const data = [
   },
   {
     id: 2,
-    title: "Not-Found",
-    image: "",
+    title: "Study Quest",
+    image: "/assets/images/projects/project-2.png",
     desc: {
-      en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse.",
-      id: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sed incidun sunt adipisci tenetur magnam esse."
+      en: "Study Quest is a web app task management with Deadline feature and Priority feature with game concept",
+      id: "Study Quest adalah sebuah aplikasi web manajemen tugas dengan fitur deadline dan fitur prioritas dengan konsep game"
     },
-    category: ["Empty", "Empty", "Empty", "Empty"]
+    category: ["React", "Typescript", "Redux", "LocalStorage"],
+    demo: "https://study-quest-management.vercel.app/",
+    github: "https://github.com/rezaahmadisukur/study-quest"
   },
   {
     id: 3,
